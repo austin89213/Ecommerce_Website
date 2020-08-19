@@ -2,7 +2,7 @@
 *.atom-project
 fasttracktojquery/
 # Virtualenv related
-# Notes/
+Notes/
 bin/
 include/
 pip-selfcheck.json
