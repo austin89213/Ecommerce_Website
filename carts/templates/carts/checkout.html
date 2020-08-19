@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% block content %}
+
+{% if not billing_profile %}
+
+<div class="row text-center">
+  <div class="col-6 col-md-6">
+    <p class="lead">Login</p>
+
+    <div class="container">
+
+      <form class="" action="index.html" method="post">
+
+      </form>
+      <div class="container">
+            {% include "accounts/sinppets/form.html" with form=login_form next=request.build_absolute_uri %}
+      </div>
+
+
+    </div>
+    </div>
+    <div class="col-6 col-md-6">
+      <p class="lead">Continue as Guest</p>
+      {% url "accounts:guest_register" as guest_register_url %}
+      {% include "accounts/sinppets/form.html" with form=guest_form next=request.build_absolute_uri action_url=guest_register_url%}
+
+    </div>
+
+
+</div>
+
+
+
+
+
+{% else %}
+
+  {% if not object.shipping_address %}
+
+    <br>
+      <h4>Shipping Address</h4>
+      <hr>
+    <div class="row">
+      <div class="col-6">
+        {% url "addresses:create" as checkout_address_create %}
+        {% include "addresses/snippets/address_form.html" with form=address_form next=request.build_absolute_uri action_url=checkout_address_create address_type='shipping' %}
+
+      </div>
+      <div class="col-6">
+        {% url "addresses:reuse" as checkout_address_reuse %}
+        {% include "addresses/snippets/prev_address.html" with address_qs=address_qs next=request.build_absolute_uri  address_type='shipping' action_url=checkout_address_reuse %}
+
+      </div>
+
+  </div>
+   {% elif not object.billing_address %}
+   <br>
+     <h4>Billing Address</h4>
+     <hr>
+   <div class="row">
+     <div class="col-6">
+       {% url "addresses:create" as checkout_address_create %}
+       {% include "addresses/snippets/address_form.html" with form=address_form next=request.build_absolute_uri action_url=checkout_address_create address_type='billing' %}
+
+     </div>
+     <div class="col-6">
+       {% url "addresses:reuse" as checkout_address_reuse %}
+       {% include "addresses/snippets/prev_address.html" with address_qs=address_qs next=request.build_absolute_uri address_type='billing' action_url=checkout_address_reuse %}
+
+     </div>
+ </div>
+  {% else %}
+
+      {% if not has_card %}
+          <!--enter credit card here-->
+          <div class='stripe-payment-form'action="/charge" method="post" id="payment-form"
+          data-token='{{publish_key}}' data-next-url='{{request.build_absolute_uri}}'
+          data-btn-title='Add Payment Method'>
+          {% csrf_token %}
+          </div>
+      {% else %}
+
+      <h1>Finalize Checkout</h1>
+
+      <p>Cart Items :
+        {% for product in object.cart.products.all %}
+            {{product}}
+            {% if not forloop.last %}
+                ,
+            {% endif %}
+        {% endfor %}
+          </p>
+          <p>Shipping Address : {{object.shipping_address.get_address}}</p>
+          <p>Billing Address : {{object.billing_address.get_address}}</p>
+          <p>Payment Method : {{billing_profile.default_card}} <a href="{{billing_profile.get_payment_method_url}}?next={{request.build_absolute_uri}}">Change</a> </p>
+          <p> Cart Total : {{object.cart.total}} </p>
+          <p> Shipping Total : {{object.shipping_total}} </p>
+          <p> Order Total : {{object.total}}</p>
+          <form class="form"  method="post">
+            {% csrf_token %}
+            <button type="submit" class=" btn btn-primary"name="Checkout">Checkout</button>
+          </form>
+        {% endif %}
+      {% endif %}
+    {% endif %}
+
+{% endblock content %}

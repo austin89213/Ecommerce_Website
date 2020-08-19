@@ -1,0 +1,16 @@
+{% load bootstrap4 %}
+<form method="POST" action="{% if action_url %}{{action_url}}{% else %}{% url 'accounts:login' %}{% endif %}" >
+    {% csrf_token %}
+
+    {% if next %}
+      <input type="hidden" name="next" value="{{next}}">
+    {% endif %}
+
+    {% if address_type %}
+      <input type="hidden" name="address_type" value="{{address_type}}">
+    {% endif %}
+    
+
+    {% bootstrap_form form %}
+      <input type="submit"class="btn btn-primary" name="" value="Submit">
+    </form>

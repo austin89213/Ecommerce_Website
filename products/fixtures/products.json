@@ -1,0 +1,60 @@
+b1bqv3sfph
+r9p42fdefszmb5va3t8uyf9wrfsid4ju071dr142qpzr3vy7qy
+[
+{
+    "model": "products.product",
+    "pk": 1,
+    "fields": {
+        "title": "Google Pixel 4",
+        "slug": "googlepixel4",
+        "description": "Best Phone",
+        "price": "999.99",
+        "image": "products/Google Pixel 4/3901746.jpg",
+        "featured": false,
+        "active": true,
+        "timestamp": "2017-09-18T19:29:03.347Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 3,
+    "fields": {
+        "title": "Hat",
+        "slug": "hat",
+        "description": "This is my awesome hat",
+        "price": "39.99",
+        "image": "products/Hat/5087957.jpg",
+        "featured": false,
+        "active": true,
+        "timestamp": "2017-09-18T19:29:03.347Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 4,
+    "fields": {
+        "title": "Computer",
+        "slug": "computer",
+        "description": "Best computer",
+        "price": "999.99",
+        "image": "products/Computer/1977309.jpg",
+        "featured": true,
+        "active": true,
+        "timestamp": "2017-09-18T19:29:03.347Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 5,
+    "fields": {
+        "title": "T-shirt",
+        "slug": "t-shirt-y7f6",
+        "description": "another one?>?",
+        "price": "39.99",
+        "image": "products/T-shirt/4780740.jpg",
+        "featured": false,
+        "active": true,
+        "timestamp": "2017-09-18T19:29:03.347Z"
+    }
+}
+]
