@@ -55,9 +55,13 @@
         </li>
         {% endif %}
 
+        {% if user.is_admin %}
         <li class="nav-item">
-          <a class="nav-link" href="http://127.0.0.1:8000/admin/">Admin</a>
+          <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
         </li>
+        {% endif %}
+
+
         <li class="nav-item">
           <a class="nav-link" href="{% url 'billing:payment_method' %}">Payment</a>
         </li>
