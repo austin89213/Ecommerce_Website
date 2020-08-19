@@ -1,7 +1,6 @@
 .DS_STORE
 *.atom-project
 fasttracktojquery/
-requirements.txt
 # Virtualenv related
 bin/
 include/
