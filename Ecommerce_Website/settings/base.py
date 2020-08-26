@@ -166,3 +166,8 @@ CSRF_COOKIE_SECURE              = False
 SECURE_HSTS_SECONDS             = None
 SECURE_HSTS_INCLUDE_SUBDOMAINS  = False
 SECURE_FRAME_DENY               = False
+
+AWS_GROUP_NAME = "Augustine_eCommerce_Group"
+AWS_USER_NAME  = "Augustine-eCommerce-user"
+AWS_ACCESS_KEY = "AKIAURYBRMHMPJKVMCN6"
+AWS_SECERT_KEY = "1dQgmNqAqI4KZkdn/g07GbA6I+BSVsB4Wg/6wikg"
