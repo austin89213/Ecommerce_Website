@@ -2,16 +2,17 @@
 *.atom-project
 fasttracktojquery/
 # Virtualenv related
-Notes/
 bin/
 include/
 pip-selfcheck.json
+.md
+Notes/Notes.md
 
 # Django related
 Ecommerce_Website/settings/local.py
 # src/<yourproject>/settings/local.py
 # static-cdn/  # any collected static files
-
+# staticfiles
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
