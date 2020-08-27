@@ -12,12 +12,11 @@
 
 </div>
 
-        <div class='row'>
-
+  <div class='row'>
     {% for obj in object_list %}
-        <div class='col-6'>
+        <div class='col-12 col-md-6'>
         {% include 'products/snippets/card.html' with instance=obj %}
-        
+
         </div>
     {% endfor %}
 </div>
