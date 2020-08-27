@@ -46,12 +46,12 @@ INSTALLED_APPS = [
     'analytics',
     'billing',
     'carts',
+    'contacts',
     'marketing',
     'orders',
     'products',
     'search',
     'tags',
-
     ]
 
 
