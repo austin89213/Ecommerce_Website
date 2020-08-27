@@ -47,14 +47,18 @@ Course:https://www.codingforentrepreneurs.com/blog/mailchimp-integration/
 2.Use SuccessMessageMixin to improve the user experience (put the rendering code in base.html)
 3. RequestBin - For makeing a local url able to test on a live service(Mailchimp)
 
-4. Make the project live-
+Make the project live-
   (1) Make a new settings folder, rename the settings.py to base.py and put it in.
   (2) Create a __init__.py (first look at thie file when starting a project), import base.py to it
   (3) modify the BASE_DIR, put original one into another os.path.dirname()
   (4) SSL/TLS https https://www.codingforentrepreneurs.com/blog/ssltls-settings-for-django
   (5) Gitignore File
 
-5. Amazone Web Services
+Herokui
+https://www.codingforentrepreneurs.com/blog/go-live-with-django-project-and-heroku
+
+
+Amazone Web Services
   https://www.codingforentrepreneurs.com/blog/s3-static-media-files-for-django
   (1) change the policy json form <your bucket name> to real bucket name
   (2) rewrite the region to where you are in aws/conf.py

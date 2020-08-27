@@ -6,10 +6,11 @@
   {% endif %}
 
   <div class="card-body">
-    <h5 class="card-title">{{ instance.title }}</h5>
+    <h4 class="card-title">{{ instance.title }}</h4>
     <p class="card-text">{{instance.description|truncatewords:10}}</p>
+    <p class="price">${{instance.price}}</p>
     <a href="{% url 'products:detail' slug=instance.slug %}" class="btn btn-primary">View</a>
-    <h1> 
+    <h1>
     {% include "products/snippets/update_cart.html" with product=instance cart=cart %}
   </div>
 </div>

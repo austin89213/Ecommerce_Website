@@ -3,8 +3,10 @@ from django.contrib.auth import  get_user_model
 from django.db.models.signals import  post_save, pre_save
 from accounts.models import GuestEmail
 from django.urls import  reverse
+from django.conf import settings
 import stripe
-stripe.api_key = "sk_test_4eC39HqLyjWDarjtT1zdp7dc"
+STRIPE_SECRET_KEY = getattr(settings,"STRIPE_SECRET_KEY", "sk_test_4eC39HqLyjWDarjtT1zdp7dc")
+stripe.api_key = STRIPE_SECRET_KEY
 User = get_user_model()
 # Create your models here.
 

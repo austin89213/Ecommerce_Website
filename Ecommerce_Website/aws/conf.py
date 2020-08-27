@@ -1,9 +1,15 @@
 import datetime
-AWS_ACCESS_KEY_ID = "AKIATWMS6J2PTJE4XFPC"
-AWS_SECRET_ACCESS_KEY = "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"
+import os
+
+
+AWS_GROUP_NAME = 'Augustine_eCommerce_Group'
+AWS_USER_NAME = 'augustine-ecommerce-user'
+AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID","AKIATWMS6J2PTJE4XFPC")
+AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY","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")
 AWS_FILE_EXPIRE = 200
 AWS_PRELOAD_METADATA = True
 AWS_QUERYSTRING_AUTH = True
+
 
 DEFAULT_FILE_STORAGE = 'Ecommerce_Website.aws.utils.MediaRootS3BotoStorage'
 STATICFILES_STORAGE = 'Ecommerce_Website.aws.utils.StaticRootS3BotoStorage'
