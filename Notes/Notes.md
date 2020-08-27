@@ -51,5 +51,10 @@ Course:https://www.codingforentrepreneurs.com/blog/mailchimp-integration/
   (1) Make a new settings folder, rename the settings.py to base.py and put it in.
   (2) Create a __init__.py (first look at thie file when starting a project), import base.py to it
   (3) modify the BASE_DIR, put original one into another os.path.dirname()
-  (4) SSL/TLS https https://www.codingforentrepreneurs.com/blog/ssltls-settings-for-django 
+  (4) SSL/TLS https https://www.codingforentrepreneurs.com/blog/ssltls-settings-for-django
   (5) Gitignore File
+
+5. Amazone Web Services
+  https://www.codingforentrepreneurs.com/blog/s3-static-media-files-for-django
+  (1) change the policy json form <your bucket name> to real bucket name
+  (2) rewrite the region to where you are in aws/conf.py

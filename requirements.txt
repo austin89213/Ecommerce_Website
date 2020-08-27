@@ -4,6 +4,9 @@ backcall==0.1.0
 bcrypt==3.1.7
 beautifulsoup4==4.9.1
 bootstrap4==0.1.0
+boto==2.49.0
+boto3==1.14.49
+botocore==1.17.49
 certifi==2020.4.5.1
 cfe==0.0.15
 cffi==1.14.0
@@ -16,11 +19,14 @@ django-bootstrap3==12.1.0
 django-bootstrap4==2.1.1
 django-braces==1.14.0
 django-debug-toolbar==2.2
+django-storages==1.9.1
+docutils==0.15.2
 Faker==4.1.0
 gunicorn==20.0.4
 idna==2.10
 ipython-genutils==0.2.0
 jedi==0.17.0
+jmespath==0.10.0
 mailchimp-marketing==3.0.12
 misaka==2.1.1
 parso==0.7.0
@@ -33,6 +39,7 @@ Pygments==2.6.1
 python-dateutil==2.8.1
 pytz==2020.1
 requests==2.24.0
+s3transfer==0.3.3
 six==1.15.0
 soupsieve==2.0.1
 sqlparse==0.3.1

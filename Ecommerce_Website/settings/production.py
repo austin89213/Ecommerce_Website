@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrap4',
-
+    #third party
+    'storages',
     ##custom apps
     'accounts',
     'addresses',
@@ -158,6 +159,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
+from Ecommerce_Website.aws.conf import *
+
+
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
@@ -172,6 +176,6 @@ SECURE_HSTS_SECONDS             = 1000000
 SECURE_FRAME_DENY               = True
 
 AWS_GROUP_NAME = "Augustine_eCommerce_Group"
-AWS_USER_NAME  = "Augustine-eCommerce-user"
-AWS_ACCESS_KEY = "AKIAURYBRMHMPJKVMCN6"
-AWS_SECERT_KEY = "1dQgmNqAqI4KZkdn/g07GbA6I+BSVsB4Wg/6wikg"
+AWS_USER_NAME  = "augustine-ecommerce-user"
+AWS_ACCESS_KEY = "AKIATWMS6J2PTJE4XFPC"
+AWS_SECERT_KEY = "EnxRDz+U6fI9QLcIgBSnF0GgEe/LhtTVtcYR9+0Q"
