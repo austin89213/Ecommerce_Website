@@ -62,3 +62,6 @@ Amazone Web Services
   https://www.codingforentrepreneurs.com/blog/s3-static-media-files-for-django
   (1) change the policy json form <your bucket name> to real bucket name
   (2) rewrite the region to where you are in aws/conf.py
+
+Error Page handling
+  Use builtin pages as templates for rendering
