@@ -2,10 +2,19 @@ from django.http import  HttpResponse
 from django.shortcuts import render,redirect
 from . forms import ContactForm, LoginForm, RegisterForm, GuestForm
 from django.contrib.auth import authenticate, login, get_user_model
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.http import is_safe_url
 from .models import  GuestEmail
-from django.views.generic import CreateView, FormView
+from django.views.generic import CreateView, FormView, DetailView
+from django.utils.decorators import method_decorator
 from . signals import  user_logged_in
+
+
+class AccountHomeView(LoginRequiredMixin,DetailView):
+    template_name = 'accounts/home.html'
+    def get_object(self):
+        return self.request.user
+
 def guest_register_view(request):
     form = GuestForm(request.POST or None)
     context = {

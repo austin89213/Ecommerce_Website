@@ -1,6 +1,7 @@
 {% url 'home' as home_url %}
 {% url 'contact' as contact_url %}
 {% url 'products:list' as product_list_url %}
+{% url 'accounts:home' as account_home_url %}
 {% url 'accounts:login' as login_url %}
 {% url 'accounts:logout' as logout_url %}
 {% url 'accounts:register' as register_url %}
@@ -41,9 +42,25 @@
         </li>
 
         {% if user.is_authenticated %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a>
-        </li>
+
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Account
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item {% if request.path == account_home_url %}
+            active
+          {% endif %}" href="{% url 'accounts:home' %}">Home</a>
+
+          <a class="dropdown-item" href="#">Billing</a>
+          <a class="dropdown-item" href="#">Configuration</a>
+          <a class="dropdown-item" href="#">History</a>
+          
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{% url 'accounts:logout' %}">Logout</a>
+        </div>
+      </li>
+
           {% else %}
         <li class="nav-item  {% if request.path == login_url %} active
       {% endif %} ">

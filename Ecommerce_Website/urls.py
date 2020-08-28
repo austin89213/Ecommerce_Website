@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from .views import home_page, about_page
 from django.contrib.auth.views import LoginView,LogoutView
-from django.views import generic
+from django.views.generic import RedirectView,TemplateView
 from billing.views import payment_method_view
 from django.conf import settings
 from django.conf.urls.static import static
@@ -27,10 +27,10 @@ urlpatterns = [
     path('', home_page, name='home'),
     path('about/',about_page, name='about'),
     path('contact/',contact_page, name='contact'),
-    path('accounts/',include("accounts.urls",namespace='accounts')),
+    path('accounts/',RedirectView.as_view(url='/account')),
+    path('account/',include("accounts.urls",namespace='accounts')),
     path('products/',include("products.urls",namespace='products')),
     path('search/',include("search.urls",namespace='search')),
-    path('bootstrap/',generic.TemplateView.as_view(template_name='bootstrap/example.html'),name='bootstrap'),
     path('carts/',include("carts.urls",namespace='carts')),
     path('addresses/',include("addresses.urls",namespace='addresses')),
     path('billing/',include('billing.urls',namespace='billing')),
