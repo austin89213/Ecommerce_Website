@@ -6,7 +6,7 @@ bin/
 include/
 pip-selfcheck.json
 .md
-Notes/Notes.md
+Notes.md
 
 # Django related
 Ecommerce_Website/settings/local.py
