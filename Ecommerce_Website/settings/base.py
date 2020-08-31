@@ -27,7 +27,19 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'austin89213@gmail.com'
+EMAIL_HOST_PASSWORD = 'ikwawirjbaxbcjic'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+ADMINS = (
+    ('Austin Lin', 'austin89213@gmail.com'),
+)
+
+MANAGERS = ADMINS
 # Application definition
 
 INSTALLED_APPS = [
@@ -78,6 +90,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.common.BrokenLinkEmailsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'Ecommerce_Website.urls'

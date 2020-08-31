@@ -82,9 +82,6 @@ class User(AbstractBaseUser):
     def is_admin(self):
         return self.admin
 
-    @property
-    def active(self):
-        return self.active
 
 
 class GuestEmail(models.Model):
