@@ -29,14 +29,14 @@ ALLOWED_HOSTS = ['.herokuapp.com']
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'austin89213@gmail.com'
-EMAIL_HOST_PASSWORD = 'ikwawirjbaxbcjic'
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 ADMINS = (
-    ('Austin Lin', 'austin89213@gmail.com'),
+    ('Austin Lin', EMAIL_HOST_USER),
 )
 
 MANAGERS = ADMINS
@@ -84,6 +84,7 @@ STRIPE_PUB_KEY = os.environ.get('STRIPE_PUB_KEY','pk_test_51HFuriJcne6vOrPOBBEZb
 
 
 MIDDLEWARE = [
+    'django.middleware.common.BrokenLinkEmailsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -91,7 +92,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.common.BrokenLinkEmailsMiddleware',
 ]
 
 ROOT_URLCONF = 'Ecommerce_Website.urls'

@@ -43,7 +43,7 @@ def object_viewed_receiver(sender,instance,request,*args,**kwargs):
     print(request)
     print(request.user)
     new_view_obj = ObjectViewed.objects.create(
-                    user=request.user,
+                    user=user,
                     ip_address=get_client_ip(request),
                     content_type=c_type,
                     object_id = instance.id

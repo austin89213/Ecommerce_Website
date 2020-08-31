@@ -26,17 +26,16 @@ SECRET_KEY = 'o85h8uq*!le$e9xntoqz49y0ed(ln3jqxlj)!rft3!puo0zts9'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'austin89213@gmail.com'
-EMAIL_HOST_PASSWORD = 'ikwawirjbaxbcjic'
+EMAIL_HOST_USER = 'your email'
+EMAIL_HOST_PASSWORD = 'your password'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 ADMINS = (
-    ('Austin Lin', 'austin89213@gmail.com'),
+    ('Austin Lin', 'your email'),
 )
 
 MANAGERS = ADMINS
