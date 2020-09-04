@@ -33,7 +33,7 @@ EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-BASE_URL = 'https://austin-ecommerce.herokuapp.com/'
+BASE_URL = 'https://austin-ecommerce.herokuapp.com'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 ADMINS = (
     ('Austin Lin', EMAIL_HOST_USER),
