@@ -2,9 +2,23 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
-
+from .models import EmailActivation,GuestEmail
+from django.contrib import messages
+from django.utils.safestring import mark_safe
 User = get_user_model()
 
+
+class ReactivateEmailForm(forms.Form):
+    email           = forms.EmailField()
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        qs = User.objects.filter(email=email)
+        if not qs.exists():
+            signup_link = reverse("accounts:register")
+            msg = """Not a registered account, please try another or <a href="{link}">sign up</a>
+            """.format(link=signup_link)
+            raise forms.ValidationError(mark_safe(msg))
+        return email
 
 class UserAdminCreationForm(forms.ModelForm):
     """
@@ -71,9 +85,27 @@ class ContactForm(forms.Form):
         if not "gmail.com" in email:
             raise forms.ValidationError("Email has to be gamil")
         return email
-class GuestForm(forms.Form):
-    email = forms.EmailField()
 
+class GuestForm(forms.ModelForm):
+    #email    = forms.EmailField()
+    class Meta:
+        model = GuestEmail
+        fields = [
+            'email'
+        ]
+
+    def __init__(self, request, *args, **kwargs):
+        self.request = request
+        super(GuestForm, self).__init__(*args, **kwargs)
+
+    def save(self, commit=True):
+        # Save the provided password in hashed format
+        obj = super(GuestForm, self).save(commit=False)
+        if commit:
+            obj.save()
+            request = self.request
+            request.session['guest_email_id'] = obj.id
+        return obj
 
 class LoginForm(forms.Form):
     email = forms.EmailField(label='Email')
@@ -103,7 +135,8 @@ class RegisterForm(forms.ModelForm):
         # Save the provided password in hashed format
         user = super(RegisterForm, self).save(commit=False)
         user.set_password(self.cleaned_data["password1"])
-        # user.is_active = False # send confirmation email to active
+        user.is_active = False # send confirmation email to active via singals
+
         if commit:
             user.save()
         return user

@@ -33,7 +33,7 @@ EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-
+BASE_URL = 'https://austin-ecommerce.herokuapp.com/'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 ADMINS = (
     ('Austin Lin', EMAIL_HOST_USER),
@@ -73,7 +73,7 @@ AUTH_USER_MODEL = 'accounts.User' #changes the built-in user model to custom one
 
 
 FORCE_SESSION_TO_ONE = True
-FORCE_INACTIVE_USER_ESESSION = True
+FORCE_INACTIVE_USER_SESSION = True
 
 MAILCHIMP_API_KEY=os.environ.get('MAILCHIMP_API_KEY',"83cbf4de381181f23a6312498744a599-us17")
 MAILCHIMP_DATA_CENTER="us17"

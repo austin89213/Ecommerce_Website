@@ -32,8 +32,8 @@ EMAIL_HOST_USER = 'your email'
 EMAIL_HOST_PASSWORD = 'your password'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+BASE_URL = '127.0.0.1:8000'
 ADMINS = (
     ('Austin Lin', 'your email'),
 )
@@ -71,7 +71,7 @@ AUTH_USER_MODEL = 'accounts.User' #changes the built-in user model to custom one
 
 
 FORCE_SESSION_TO_ONE = True
-FORCE_INACTIVE_USER_ESESSION = True
+FORCE_INACTIVE_USER_SESSION = True
 
 MAILCHIMP_API_KEY="83cbf4de381181f23a6312498744a599-us17"
 MAILCHIMP_DATA_CENTER="us17"

@@ -77,7 +77,7 @@ def checkout_home(request):
     user = request.user
     billing_profile = None
     login_form = LoginForm()
-    guest_form = GuestForm()
+    guest_form = GuestForm(request=request)
     address_form = AddressForm()
     billing_address_id = request.session.get('billing_address_id',None)
     shipping_address_id = request.session.get('shipping_address_id',None)

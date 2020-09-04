@@ -6,6 +6,16 @@ import string
 random_string_generator is located here:
 http://joincfe.com/blog/random-string-generator-in-python/
 '''
+def unique_key_generator(instance):
+    size = random.randint(30,45)
+    key = random_string_generator(size=size)
+    Klass = instance.__class__
+    qs_exists = Klass.objects.filter(key=key).exists()
+    if qs_exists:
+        return unique_slug_generator(instance)
+    return key
+
+
 def unique_ordr_id_generator(instance):
     order_id_new = random_string_generator().upper()
     Klass = instance.__class__

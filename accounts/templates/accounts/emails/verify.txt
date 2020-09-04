@@ -1,0 +1,11 @@
+Hi {{email}},
+
+Please activate your account by clicking the link below:
+
+{{path}}
+
+Once you activate, you can login!
+
+Thank you,
+
+Austin eCommerce

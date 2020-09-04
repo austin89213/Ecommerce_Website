@@ -15,7 +15,7 @@ from . utils import  get_client_ip
 User = get_user_model()
 
 FORCE_SESSION_TO_ONE = getattr(settings, 'FORCE_SESSION_TO_ONE',False)
-FORCE_INACTIVE_USER_ESESSION = getattr(settings, 'FORCE_INACTIVE_USER_ESESSION',False)
+FORCE_INACTIVE_USER_SESSION = getattr(settings, 'FORCE_INACTIVE_USER_SESSION',False)
 
 class ObjectViewed(models.Model):
     user            = models.ForeignKey(User,blank=True,null=True,on_delete=models.CASCADE) # User instance
@@ -89,15 +89,17 @@ if FORCE_SESSION_TO_ONE:
     post_save.connect(post_save_session_receiver,sender=UserSession)
 
 
+
 def post_save_user_changed_receiver(sender, instance, created, *args, **kwargs):
     if not created:
         if instance.is_active == False:
-            print('ending...')
-            qs = UserSession.objects.filter(user=instance.user)
+            qs = UserSession.objects.filter(user=instance, ended=False, active=True)
             for i in qs:
                 i.end_session()
 
-if FORCE_INACTIVE_USER_ESESSION:
+
+
+if FORCE_INACTIVE_USER_SESSION:
     post_save.connect(post_save_user_changed_receiver,sender=User)
 
 
