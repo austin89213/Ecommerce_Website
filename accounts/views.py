@@ -4,14 +4,14 @@ from django.contrib.auth import authenticate, login, get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.http import is_safe_url
 from django.utils.safestring import mark_safe
-from django.views.generic import CreateView, FormView, DetailView,View
+from django.views.generic import CreateView, FormView, DetailView,View, UpdateView
 from django.views.generic.edit import FormMixin
 from django.utils.decorators import method_decorator
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse
 from Ecommerce_Website.mixins import RequestFormAttachMixin,NextUrlMixin
-from . forms import ContactForm, LoginForm, RegisterForm, GuestForm, ReactivateEmailForm
+from . forms import ContactForm, LoginForm, RegisterForm, GuestForm, ReactivateEmailForm, UserDetailChangeForm
 from . models import  GuestEmail, EmailActivation, User
 from . signals import  user_logged_in
 
@@ -157,6 +157,23 @@ class RegisterView(SuccessMessageMixin, CreateView):
     template_name = "accounts/register.html"
     success_url = '/account/login/'
     success_message = """Activation link sent. Please check your email and confirm your account before logging in."""
+
+
+class UserDetailChangeView(LoginRequiredMixin,UpdateView):
+    form_class = UserDetailChangeForm
+    model = User
+    template_name = 'accounts/detail_update.html'
+
+    def get_object(self):
+        return self.request.user
+
+    def get_context_data(self,*args,**kwargs):
+        context = super(UserDetailChangeView,self).get_context_data(*args,**kwargs)
+        context ['title'] = 'Upadte Account Details'
+        return context
+
+    def get_success_url(self):
+        return reverse ("accounts:home")
 #
 # User=get_user_model()
 # def register_page(request):

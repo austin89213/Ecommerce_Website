@@ -29,11 +29,14 @@ urlpatterns = [
     path('contact/',contact_page, name='contact'),
     path('accounts/',include("accounts.password.urls",)),
     path('account/',include("accounts.urls",namespace='accounts')),
-    path('products/',include("products.urls",namespace='products')),
-    path('search/',include("search.urls",namespace='search')),
-    path('carts/',include("carts.urls",namespace='carts')),
     path('addresses/',include("addresses.urls",namespace='addresses')),
     path('billing/',include('billing.urls',namespace='billing')),
+    path('carts/',include("carts.urls",namespace='carts')),
     path('marketing/',include('marketing.urls',namespace='marketing')),
+    path('orders/',include('orders.urls',namespace='orders')),
+    path('products/',include("products.urls",namespace='products')),
+    path('search/',include("search.urls",namespace='search')),
+
+
 ]
 urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

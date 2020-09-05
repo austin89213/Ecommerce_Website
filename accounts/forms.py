@@ -48,6 +48,12 @@ class UserAdminCreationForm(forms.ModelForm):
             user.save()
         return user
 
+class UserDetailChangeForm(forms.ModelForm):
+    full_name = forms.CharField(label='Name', required=False)
+
+    class Meta:
+        model = User
+        fields = ['full_name']
 
 class UserAdminChangeForm(forms.ModelForm):
     """A form for updating users. Includes all the fields on

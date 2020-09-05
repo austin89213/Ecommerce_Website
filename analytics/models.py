@@ -17,24 +17,46 @@ User = get_user_model()
 FORCE_SESSION_TO_ONE = getattr(settings, 'FORCE_SESSION_TO_ONE',False)
 FORCE_INACTIVE_USER_SESSION = getattr(settings, 'FORCE_INACTIVE_USER_SESSION',False)
 
+class ObjectViewedQuerySet(models.query.QuerySet):
+
+    def by_model(self,model_class,return_model_queryset=False):
+        c_type = ContentType.objects.get_for_model(model_class)
+        qs = self.filter(content_type=c_type)
+        if return_model_queryset:
+            viewd_ids = [x.object_id for x in qs]
+            return model_class.objects.filter(pk__in=viewd_ids)
+        return qs
+
+class ObjectViewedManager(models.Manager):
+    def get_queryset(self):
+        return ObjectViewedQuerySet(self.model, using=self._db)
+
+    def by_model(self, model_class,return_model_queryset=False):
+        return self.get_queryset().by_model(model_class,return_model_queryset)
+
+
 class ObjectViewed(models.Model):
     user            = models.ForeignKey(User,blank=True,null=True,on_delete=models.CASCADE) # User instance
     ip_address      = models.CharField(max_length=220,blank=True,null=True)
     content_type    = models.ForeignKey(ContentType,on_delete=models.CASCADE) # trying to get User, Product,Order,Cart,Address etc...
-    object_id      = models.PositiveIntegerField()  # User id, Product id, Order id,
+    object_id       = models.PositiveIntegerField()  # User id, Product id, Order id,
     content_object  = GenericForeignKey('content_type','object_id',) # Product instance
     timestamp       = models.DateTimeField(auto_now_add=True)
 
-
+    objects = ObjectViewedManager()
 
 
     def __str__(self):
         return f'{self.content_object} viewd at {self.timestamp}'
 
+
+
     class Meta:
         ordering = ['-timestamp'] #most recent saved show up first
         verbose_name = 'Object viewd'
         verbose_name_plural = 'Object viewd'
+
+
 
 def object_viewed_receiver(sender,instance,request,*args,**kwargs):
     c_type = ContentType.objects.get_for_model(sender) # == instance.__class__

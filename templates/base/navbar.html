@@ -47,17 +47,15 @@
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Account
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item {% if request.path == account_home_url %}
-            active
-          {% endif %}" href="{% url 'accounts:home' %}">Home</a>
+        <div class="dropdown-menu bg-dark mb-3" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{% url 'accounts:home' %}"><font color="#A6ACAF ">Home</font></a>
 
-          <a class="dropdown-item" href="#">Billing</a>
-          <a class="dropdown-item" href="#">Configuration</a>
-          <a class="dropdown-item" href="#">History</a>
+          <a class="dropdown-item" href="{% url 'orders:list' %}"><font color="#A6ACAF ">Orders</font></a>
+          <a class="dropdown-item" href="{% url 'marketing:update' %}"><font color="#A6ACAF ">Configuration</font></a>
+          <a class="dropdown-item" href="{% url 'products:user_product_history' %}"><font color="#A6ACAF ">History</font></a>
 
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="{% url 'accounts:logout' %}">Logout</a>
+          <a class="dropdown-item" href="{% url 'accounts:logout' %}"><font color="#A6ACAF ">Logout</font></a>
         </div>
       </li>
 

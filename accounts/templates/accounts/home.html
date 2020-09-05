@@ -33,7 +33,7 @@
   <div class="card-body">
     <h5 class="card-title">Billing</h5>
     <div class="list-group">
-      <a class="list-group-item" href="#">Orders</a>
+      <a class="list-group-item" href="{% url 'orders:list' %}">Orders</a>
       <a class="list-group-item" href="{% url 'billing:payment_method' %}">Payment Methods</a>
       <a class="list-group-item" href="#">Address</a>
     </div>
@@ -44,11 +44,10 @@
 <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3">
 <div class="card" >
   <div class="card-body">
-    <h5 class="card-title">Configuration</h5>
+    <h5 class="card-title">Account Details</h5>
     <div class="list-group">
-      <a class="list-group-item" href="#"> Change User Name</a>
-      <a class="list-group-item" href="#"> Reset Password</a>
-      <a class="list-group-item" href="{% url 'marketing:update' %}">Email Marketing Preference</a>
+      <a class="list-group-item" href="{% url 'accounts:user_update' %}">Update Details</a>
+      <a class="list-group-item" href="{% url 'password_change' %}"> Change Password</a>
     </div>
   </div>
 </div>
@@ -58,9 +57,20 @@
 <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3">
 <div class="card" >
   <div class="card-body">
+    <h5 class="card-title">Configuration</h5>
+    <div class="list-group">
+
+      <a class="list-group-item" href="{% url 'marketing:update' %}">Email Marketing Preference</a>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="col-12 col-sm-6 col-md-4 col-lg-3 my-3">
+<div class="card" >
+  <div class="card-body">
     <h5 class="card-title">History</h5>
-    <a class="list-group-item" href="#">Object Viewd</a>
-    <a class="list-group-item" href="#">Login Record</a>
+    <a class="list-group-item" href="{% url 'products:user_product_history' %}">Product Viewd</a>
   </div>
 </div>
 </div>
