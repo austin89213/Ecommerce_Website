@@ -4,13 +4,27 @@
 <div class="container">
   <div class="row">
     <div class="col-12 col-md-6">
-      {{object}} <br>
-      {{object.timestamp|timesince}} ago
-      {{object.description|linebreaks}} <br>
-      {{object.price}} <br>
-      {% if object.image %}
-      <img src="{{ object.image.url }}" alt="">
+      <h2>{{object}} </h2>
+      {% if bought %}
+        <h4>#{{bought}}</h4>
       {% endif %}
+      {% if object.is_digital %}
+        <p>* Digital</p>
+      {% endif %}
+
+
+
+
+
+      <p>Added : {{object.timestamp|timesince}} ago</p>
+      Description: {{object.description|linebreaks}}
+      ${{object.price}} <br>
+      <div class="mt-3">
+        {% if object.image %}
+        <img src="{{ object.image.url }}" alt="">
+        {% endif %}
+      </div>
+
     </div>
 
     <div class="row">

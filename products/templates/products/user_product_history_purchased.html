@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class='row  mb-3'>
+           <div class='col-12 col-md-6 '>
+<h2>Purchase History</h2>
+           </div>
+           <div class='col-12'>
+               <hr>
+           </div>
+
+</div>
+
+
+
+<div class="container">
+
+  {% if products_purchased %}
+
+
+
+  <h4>Product Purchased</h4>
+  <div class='row'>
+    {% for obj in  products_purchased.product_active %}
+
+        <div class='col-12 col-md-6 col-lg-4'>
+        {% include 'products/snippets/card.html' with instance=obj %}
+
+        </div>
+    {% endfor %}
+</div>
+<br>
+<br>
+<hr>
+<br>
+<h4>Product Refunded</h4>
+  <div class='row'>
+    {% for obj in products_purchased.product_refunded %}
+      {% if obj not in products_purchased.product_active %}
+
+      <div class='col-12 col-md-6 col-lg-4'>
+        {% include 'products/snippets/card.html' with instance=obj %}
+      {% endif %}
+
+        </div>
+    {% endfor %}
+</div>
+{% else %}
+  <h4>You don't have any purchasing history yet. </h2>
+  <h4>Go to get find <a href="{% url 'products:list'%}">products</a>  interesting to you! </h2>
+{% endif %}
+</div>
+{% endblock %}

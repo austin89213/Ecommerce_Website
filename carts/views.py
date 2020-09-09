@@ -80,6 +80,8 @@ def checkout_home(request):
     guest_form = GuestForm(request=request)
     address_form = AddressForm()
     billing_address_id = request.session.get('billing_address_id',None)
+
+    shipping_address_required = not cart_obj.is_digital
     shipping_address_id = request.session.get('shipping_address_id',None)
 
     billing_address_form = AddressForm()
@@ -128,6 +130,7 @@ def checkout_home(request):
         "address_qs":address_qs,
         "has_card":has_card,
         "publish_key":STRIPE_PUB_KEY,
+        "shipping_address_required":shipping_address_required,
     }
     return render(request,"carts/checkout.html",context)
 
@@ -136,5 +139,5 @@ def checkout_done(request):
 
 def cart_home(request):
     cart_obj, new_obj = Cart.objects.new_or_get(request)
-
+    print (f'Cart is digital:{cart_obj.is_digital}')
     return render(request,"carts/home.html",{"cart":cart_obj})

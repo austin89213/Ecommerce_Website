@@ -48,6 +48,8 @@
     <div class="list-group">
       <a class="list-group-item" href="{% url 'accounts:user_update' %}">Update Details</a>
       <a class="list-group-item" href="{% url 'password_change' %}"> Change Password</a>
+      <a class="list-group-item" href="{% url 'products:library' %}"> Library</a>
+
     </div>
   </div>
 </div>
@@ -70,7 +72,9 @@
 <div class="card" >
   <div class="card-body">
     <h5 class="card-title">History</h5>
-    <a class="list-group-item" href="{% url 'products:user_product_history' %}">Product Viewd</a>
+    <a class="list-group-item" href="{% url 'products:user_product_history_viewd' %}">Product Viewd</a>
+    <a class="list-group-item" href="{% url 'products:user_product_history_purchased' %}">Product Purchased</a>
+
   </div>
 </div>
 </div>

@@ -52,6 +52,15 @@ class Cart(models.Model):
     def tax(self):
         return self.total - self.subtotal
 
+    @property
+    def is_digital(self):
+        qs = self.products.all()
+        new_qs = qs.filter(is_digital=False)
+        if new_qs.exists():
+            return False
+        return True
+
+
 def cart_m2m_changed_eceiver(sender,instance,action,*args,**kwargs):
     if action =='post_add' or action == 'post_remove' or action == 'post_clear':
         print(action)

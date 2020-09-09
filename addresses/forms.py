@@ -9,7 +9,7 @@ class AddressForm(forms.ModelForm):
             'address_line_1',
             'address_line_2',
             'city',
-            'country',
             'state',
+            'country',
             'postal_code',
         ]

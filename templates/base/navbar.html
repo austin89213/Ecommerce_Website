@@ -49,10 +49,11 @@
         </a>
         <div class="dropdown-menu bg-dark mb-3" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="{% url 'accounts:home' %}"><font color="#A6ACAF ">Home</font></a>
+          <a class="dropdown-item" href="{% url 'products:library' %}"><font color="#A6ACAF ">Library</font></a>
 
           <a class="dropdown-item" href="{% url 'orders:list' %}"><font color="#A6ACAF ">Orders</font></a>
           <a class="dropdown-item" href="{% url 'marketing:update' %}"><font color="#A6ACAF ">Configuration</font></a>
-          <a class="dropdown-item" href="{% url 'products:user_product_history' %}"><font color="#A6ACAF ">History</font></a>
+          <a class="dropdown-item" href="{% url 'products:user_product_history_viewd' %}"><font color="#A6ACAF ">History</font></a>
 
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="{% url 'accounts:logout' %}"><font color="#A6ACAF ">Logout</font></a>

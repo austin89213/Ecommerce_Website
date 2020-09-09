@@ -3,9 +3,14 @@ from django.db.models.signals import pre_save,post_save
 from Ecommerce_Website.utils import unique_ordr_id_generator
 from carts.models import Cart
 from billing.models import BillingProfile
+from products.models import Product
 from addresses.models import Address
 from django.urls import reverse
+from Ecommerce_Website import settings
 import math
+
+User=settings.AUTH_USER_MODEL
+
 ORDER_STATUS_CHOICES = (
     ('created', 'Created'),
     ('paid', 'Paid'),
@@ -86,18 +91,37 @@ class Order(models.Model):
         return  new_total
 
     def check_done(self):
+        shipping_address_required = not self.cart.is_digital
+        shipping_done = False
+        if shipping_address_required and self.shipping_address:
+            shipping_done = True
+        elif shipping_address_required and not self.shipping_address:
+            shipping_done = False
+        else:
+            shipping_done = True
         billing_profile = self.billing_profile
         billing_address = self.billing_address
         shipping_address= self.shipping_address
         total = self.total
-        if billing_profile and billing_address and shipping_address and total>0:
+        if billing_profile and billing_address and shipping_done and total>0:
             return True
         return False
 
+    def update_purchases(self):
+        for p in self.cart.products.all():
+            obj, created = ProductPurchase.objects.get_or_create(
+                order_id = self.order_id,
+                product = p,
+                billing_profile = self.billing_profile
+            )
+        return ProductPurchase.objects.filter(order_id=self.order_id).count()
+
     def mark_paid(self):
-        if self.check_done():
-            self.status = 'paid'
-            self.save()
+        if self.status != 'paid':
+            if self.check_done():
+                self.status = 'paid'
+                self.save()
+                self.update_purchases()
         return self.status
 
 
@@ -131,3 +155,59 @@ def post_save_order(sender,instance,created,*args,**kwargs):
         instance.update_total()
 
 post_save.connect(post_save_order,sender=Order)
+
+class ProductPurchaseQuerySet(models.query.QuerySet):
+
+    def active(self):
+        return self.filter(refunded=False)
+
+    def refunded(self):
+        return self.filter(refunded=True)
+
+
+    def digital(self):
+        return self.filter(product__is_digital=True)
+
+    def by_request(self,request):
+        billing_profile, created = BillingProfile.objects.new_or_get(request)
+        return self.filter(billing_profile=billing_profile)
+
+    def products_by_request(self,request):
+        qs = self.by_request(request)
+        prodcuts_purchased_ids = [x.product.id for x in qs]
+        prodcuts_qs = Product.objects.filter(id__in=prodcuts_purchased_ids).distinct()
+        return prodcuts_qs
+
+class ProductPurchaseManager(models.Manager):
+    def get_queryset(self):
+        return ProductPurchaseQuerySet(self.model, using=self._db)
+
+    def active(self):
+        return self.get_queryset().active()
+
+    def refunded(self):
+        return self.get_queryset().refunded()
+
+    def digital(self):
+        return self.get_queryset().active().digital()
+
+    def by_request(self,request):
+        return self.get_queryset().by_request(request)
+
+    def products_by_request(self,request):
+        qs = self.by_request(request)
+        prodcuts_purchased_ids = [x.product.id for x in qs]
+        prodcuts_qs = Product.objects.filter(id__in=prodcuts_purchased_ids).distinct()
+        return prodcuts_qs
+
+class ProductPurchase(models.Model):
+    billing_profile     = models.ForeignKey(BillingProfile, on_delete=models.CASCADE)
+    order_id            = models.CharField(max_length=120)
+    product             = models.ForeignKey(Product,on_delete=models.CASCADE,related_name='purchased')
+    refunded            = models.BooleanField(default=False)
+    timestamp           = models.DateTimeField(auto_now_add=True)
+    updated             = models.DateTimeField(auto_now=True)
+
+    objects = ProductPurchaseManager()
+    def __str__(self):
+        return self.product.title

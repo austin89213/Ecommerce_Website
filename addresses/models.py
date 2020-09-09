@@ -17,9 +17,12 @@ class Address(models.Model):
 
     def __str__(self):
         if self.state:
-            return f'{self.address_line_1} {self.address_line_2} {self.city} {self.country} {self.state} {self.postal_code}'
+            return f'{self.billing_profile} {self.address_type} : {self.address_line_1} {self.address_line_2} {self.city} {self.state} {self.postal_code} {self.country}'
         else:
-            return f'{self.address_line_1} {self.address_line_2} {self.city} {self.country} {self.postal_code}'
+            return f'{self.billing_profile} {self.address_type} : {self.address_line_1} {self.address_line_2} {self.city} {self.postal_code} {self.country}'
 
     def get_address(self):
-        return f"{self.address_line_1}\n{self.address_line_2}\n{self.city}\n{self.state}\n{self.postal_code}\n{self.country}"
+        if self.state:
+            return f"{self.address_line_1} {self.address_line_2} {self.city} {self.state} {self.postal_code} {self.country}"
+        else:
+            return f"{self.address_line_1} {self.address_line_2} {self.city} {self.postal_code} {self.country}"

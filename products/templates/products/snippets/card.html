@@ -11,6 +11,10 @@
 <a href="{% url 'products:detail' slug=instance.slug %}"></a>
   <div class="card-body">
     <h4 class="card-title">{{ instance.title }}</h4>
+      {% if instance.is_digital %}
+      <p>* digital </p>
+    {% endif %}
+
     <p class="card-text">{{instance.description|truncatewords:10}}</p>
     <p class="price">${{instance.price}}</p>
     <a href="{% url 'products:detail' slug=instance.slug %}" class="btn btn-primary">View</a>

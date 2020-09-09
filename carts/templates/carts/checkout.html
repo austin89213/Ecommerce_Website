@@ -36,7 +36,7 @@
 
 {% else %}
 
-  {% if not object.shipping_address %}
+  {% if not object.shipping_address and shipping_address_required %}
 
     <br>
       <h4>Shipping Address</h4>
@@ -91,7 +91,10 @@
             {% endif %}
         {% endfor %}
           </p>
+          {% if shipping_address_required %}
           <p>Shipping Address : {{object.shipping_address.get_address}}</p>
+          {% endif %}
+
           <p>Billing Address : {{object.billing_address.get_address}}</p>
           <p>Payment Method : {{billing_profile.default_card}} <a href="{{billing_profile.get_payment_method_url}}?next={{request.build_absolute_uri}}">Change</a> </p>
           <p> Cart Total : {{object.cart.total}} </p>

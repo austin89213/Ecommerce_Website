@@ -175,7 +175,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 from Ecommerce_Website.aws.conf import *
 
-
+LOGIN_URL = '/account/login/'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
