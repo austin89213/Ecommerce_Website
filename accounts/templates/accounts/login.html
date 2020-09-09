@@ -9,7 +9,7 @@
 
       {% bootstrap_form form %}
       {% buttons %}
-        <button type="submit" class="btn btn-primary">Login</button>
+      <p><button type="submit" class="btn btn-primary">Login</button> <span class="ml-3"><a href="{% url "password_reset" %}">Forget Password</a> </span> </p>  
       {% endbuttons %}
       </form>
 </div>

@@ -109,8 +109,9 @@ class UserProductHistoryPurchase(LoginRequiredMixin,generic.ListView):
         # obj_refunded = Product.objects.filter(pk__in=refunded_ids)
         # print(f'bought:{obj_bought},refunded:{obj_refunded}')
         product_active = ProductPurchase.objects.active().products_by_request(self.request)
-        product_refunded = ProductPurchase.objects.refunded().products_by_request(self.request)
+        product_refunded = ProductPurchase.objects.refunded().products_by_request(self.request).exclude(id__in=product_active)
         queryset={'product_active':product_active,'product_refunded':product_refunded}
+        print(f'active:{product_active},refunded:{product_refunded}')
         return queryset
 
 class LibraryView(LoginRequiredMixin,generic.ListView):
