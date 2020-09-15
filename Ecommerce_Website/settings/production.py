@@ -173,6 +173,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
+PROTECTED_ROOT = os.path.join(BASE_DIR,'protected_media')
+
 from Ecommerce_Website.aws.conf import *
 
 LOGIN_URL = '/account/login/'

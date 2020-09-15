@@ -1,9 +1,13 @@
 from django.contrib import admin
-from . import models
+from .models import Product,ProductFile
 # Register your models here.
 
+class ProductFileInLine(admin.TabularInline):
+    model = ProductFile
+    extra = 1
 class ProductAdmin(admin.ModelAdmin):
     list_display = ['__str__','slug']
+    inlines = [ProductFileInLine]
     class Meta:
-        model = models.Product
-admin.site.register(models.Product, ProductAdmin)
+        model = Product
+admin.site.register(Product, ProductAdmin)

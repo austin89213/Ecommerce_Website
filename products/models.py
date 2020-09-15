@@ -1,10 +1,12 @@
 from django.db import models
 import os
 import random
+from django.conf import settings
 from Ecommerce_Website.utils import random_string_generator,unique_slug_generator
 from django.db.models.signals import pre_save,post_save,m2m_changed
 from django.urls import reverse
 from django.db.models import Q
+from django.core.files.storage import FileSystemStorage
 def get_filename_ext(filepath):
     base_name = os.path.basename(filepath)
     name, ext = os.path.splitext(base_name)
@@ -72,8 +74,9 @@ class Product(models.Model):
         return reverse('products:detail',kwargs={'slug':self.slug})
 
     def __str__(self):
+        if self.is_digital:
+            return str(f'{self.title} [Digital]')
         return self.title
-
     @property
     def name(self):
         return self.title
@@ -84,3 +87,23 @@ def product_pre_save_receiver(sender,instance,*args,**kwargs):
 
 pre_save.connect(product_pre_save_receiver,sender=Product)
 # pre_save means the method is going to run before the data of models saved
+
+def upload_product_file_location(instance,filename):
+    print(instance.id)
+    slug = instance.product.slug
+    if not slug:
+        slug = unique_slug_generator(instance.product)
+    location = f"products/{slug}/"
+    return location + filename
+
+
+class ProductFile(models.Model):
+    product     = models.ForeignKey(Product,on_delete=models.CASCADE)
+    file        = models.FileField(upload_to=upload_product_file_location,
+                        storage=FileSystemStorage(location=settings.PROTECTED_ROOT)
+                        )
+
+
+
+    def __str__(self):
+        return str(self.file.name)

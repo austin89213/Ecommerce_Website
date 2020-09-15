@@ -8,14 +8,7 @@
       {% if bought %}
         <h4>#{{bought}}</h4>
       {% endif %}
-      {% if object.is_digital %}
-        <p>* Digital</p>
-      {% endif %}
-
-
-
-
-
+  
       <p>Added : {{object.timestamp|timesince}} ago</p>
       Description: {{object.description|linebreaks}}
       ${{object.price}} <br>
