@@ -31,3 +31,8 @@ AWS_HEADERS = {
 }
 
 AWS_QUERYSTRING_AUTH = True
+
+PROTECTED_DIR_NAME = 'protected'
+PROTECTED_MEDIA_URL = '//%s.s3.amazonaws.com/%s/' %( AWS_STORAGE_BUCKET_NAME, PROTECTED_DIR_NAME)
+
+AWS_DOWNLOAD_EXPIRE = 5000 #(0ptional, in milliseconds)

@@ -1,11 +1,15 @@
 from django.utils.text import slugify
 import random
 import string
-
+import os
 '''
 random_string_generator is located here:
 http://joincfe.com/blog/random-string-generator-in-python/
 '''
+
+def get_filename(path):
+    return os.path.basename(path)
+
 def unique_key_generator(instance):
     size = random.randint(30,45)
     key = random_string_generator(size=size)

@@ -1,13 +1,13 @@
 from django.views import generic
-from django.http import  Http404
-from django.shortcuts import render, get_object_or_404
-from .models import Product
+from django.http import  Http404, HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404,redirect
+from .models import Product, ProductFile
 from orders.models import ProductPurchase
 from carts.models import Cart
 from analytics.mixins import ObjectViewedMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from billing.models import BillingProfile
-
+from django.contrib import messages
 # Create your views here.
 
 class ProductFeaturedList(generic.ListView):
@@ -67,7 +67,56 @@ class ProductDetail(ObjectViewedMixin,generic.DetailView):
     def get_ip_address(self):
         ip = object_viewed_signal.send(instance.__class__,instance=instance,request=request)
         return ip
+import os
+from wsgiref.util import FileWrapper
+from django.conf import  settings
+from mimetypes import  guess_type
+from orders.models import  ProductPurchase
 
+class ProductDownloadView(generic.View):
+    def get(self,request, *args,**kwargs):
+        slug = kwargs.get('slug')
+        pk = kwargs.get('pk')
+        downloads_qs = ProductFile.objects.filter(pk=pk,product__slug=slug) # == ProdcutFile.objects.filter(product=product_obj)
+        if downloads_qs.count() != 1:
+            raise Http404('Download not found')
+        download_obj = downloads_qs.first()
+        can_download = False
+        user_ready = True
+        if download_obj.user_required:
+            if not request.user.is_authenticated:
+                user_ready = False
+        purchased_products = Product.objects.none()
+
+        if download_obj.free:
+            can_download = True
+            user_ready = True
+        else:
+            purchased_products = ProductPurchase.objects.products_by_request(request)
+            if download_obj.product in purchased_products:
+                can_download = True
+        if not can_download or not user_ready:
+            messages.error(request,"You do not have access to download this item")
+            return redirect(download_obj.get_default_url())
+
+        aws_filepath = download_obj.generate_download_url()
+        print(aws_filepath)
+        return HttpResponseRedirect(aws_filepath)
+
+        # file_root = settings.PROTECTED_ROOT
+        # filepath = download_obj.file.path
+        # final_filepath = os.path.join(file_root,filepath) # where the file is sotred
+        # with open(final_filepath,'rb') as f:
+        #     wrapper = FileWrapper(f)
+        #     mimetype = 'application/force-download'
+        #     gussed_mimetype = guess_type(filepath)[0]
+        #     if gussed_mimetype:
+        #         mimetype = gussed_mimetype
+        #
+        #     response = HttpResponse(wrapper,content_type=mimetype)
+        #     response['Content-Disposition'] = "attachment;filename=%s"%(download_obj.name)
+        #     response['X-SendFile'] = str(download_obj.name)
+        #     return response
 
 class UserProductHistoryView(LoginRequiredMixin,generic.ListView):
     model = Product
