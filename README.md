@@ -4,60 +4,54 @@ A Django based eCommerce Website using multiple techs like Boostrap, AJAX, JavaS
 Users are able to register, manage accounts and orders, post feedbacks, check purchased / viewed products history and do shopping.
 
 # Functions
-   -Accounts:
-    -Registration
-    -Login
-   -Password reset
-   -Password change
-   -Email activation
-   -Update details (Name only currently)
-   -Confirgurations (Email Marketing Prefernce)
-   -Payment method
-   -Address
-   -Viewd history
-   -Purchased history
-   -Orders check
+- Accounts:
+   - Registration
+   - Login
+   - Password reset
+   - Password change
+   - Email activation
+   - Update details (Name only currently)
+   - Confirgurations (Email Marketing Prefernce)
+   - Payment method
+   - Address
+   - Viewd history
+   - Purchased history
+   - Orders check
 
--Products:
+- Products:
+   - Featured products will be seen at home page
+   - Purchase
+   - View
+   - Add to cart or remove from cart (JavaScript)
+   - Library (for digital products)
 
-   -Featured products will be seen at home page
-   -Purchase
-   -View
-   -Add to cart or remove from cart (JavaScript)
-   -Library (for digital products)
+- Orders:
+- Different order status (created, paid, shipped, refunded)
 
--Orders:
-  
-   -Different order status (created, paid, shipped, refunded)
+- Carts:
+   - Checkout by cards
+   - Update the and showd how many items in the cart(JavaScript)
 
--Carts:
-  
-   -Checkout by cards
-   -Update the and showd how many items in the cart(JavaScript)
+- Charges:
+   - Integrate Stripe API as the payment platform
 
--Charges:
+- Contacts:
+   - Provide a contact form to collect advices
 
-   -Integrate Stripe API as the payment platform
-
--Contacts:
-
-   -A contact form to collect advices
-
--Others:
-
-   -RWD
+- Others:
+   - RWD
 
 # Techniques & tools :
 
- -Backend:
-    -[Django (3.0.3)] (https://www.djangoproject.com/)
+- Backend:
+   - [Django (3.0.3)] (https://www.djangoproject.com/)
 
- -Frontend:
-    -[Bootstrap (4)] (https://getbootstrap.com/)
- -Database:
+- Frontend:
+   - [Bootstrap (4)] (https://getbootstrap.com/)
+   
+- Database:
+   - [SQLite] (https://www.sqlite.org/index.html)
+- Deployment:
 
-   -[SQLite] (https://www.sqlite.org/index.html)
- -Deployment:
-
-   -[AWS] (https://aws.amazon.com/)
-   -[Heroku] (https://www.heroku.com/)
+   - [AWS] (https://aws.amazon.com/)
+   - [Heroku] (https://www.heroku.com/)
