@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import home_page, about_page
+from .views import home_page, about_page, HomePage
 from django.contrib.auth.views import LoginView,LogoutView
 from django.views.generic import RedirectView,TemplateView
 from billing.views import payment_method_view
@@ -24,7 +24,7 @@ from django.conf.urls.static import static
 from contacts.views import contact_page
 urlpatterns = [
     path('admin/', admin.site.urls,),
-    path('', home_page, name='home'),
+    path('', HomePage.as_view(), name='home'),
     path('about/',about_page, name='about'),
     path('contact/',contact_page, name='contact'),
     path('accounts/',include("accounts.password.urls",)),

@@ -2,6 +2,16 @@ from django.http import  HttpResponse, JsonResponse
 from django.shortcuts import render,redirect
 from . forms import ContactForm, LoginForm, RegisterForm
 from django.contrib.auth import authenticate, login, get_user_model
+from products.models import Product
+from django.views.generic import ListView
+
+class  HomePage(ListView):
+    template_name ='home_page.html'
+
+    def get_queryset(self,*args,**kwargs):
+        request = self.request
+        return Product.objects.all().featured()
+
 def home_page(request):
     # print(request.session.get('user','unknown')) #seesion getter
     context = {

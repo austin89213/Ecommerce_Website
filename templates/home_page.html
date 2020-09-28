@@ -8,18 +8,26 @@
 {% endblock %}
 
 {% block content %}
-<div class='text-center'>
-    <h1>Welcome to Austin eCommerce!</h1>
-</div>
-
 {% if request.user.is_authenticated %}
-<br>
-<br>
-<div class='row'>
-  <div class='col'>
-  <h5>Hi {{request.user.email}}, welcome back!</h5>
-  {{ premium_content }}
-  </div>
+<div class='text-center'>
+    <h1>Hi <a href="{% url 'accounts:home' %}">{{request.user}}</a>, welcome back! </h1>
+</div>
+{% else %}
+<div class='container'>
+    <h1>Welcome to Austin eCommerce!  </h1>
 </div>
 {% endif %}
+
+
+
+<div class="container mt-5">
+  <div class='row'>
+    {% for obj in object_list %}
+        <div class='col-12 col-md-6 col-lg-4'>
+        {% include 'products/snippets/card.html' with instance=obj %}
+
+        </div>
+    {% endfor %}
+  </div>
+</div>
 {% endblock %}
