@@ -9,18 +9,24 @@
 
 {% block content %}
 {% if request.user.is_authenticated %}
-<div class='text-center'>
+<div class='container'>
     <h1>Hi <a href="{% url 'accounts:home' %}">{{request.user}}</a>, welcome back! </h1>
 </div>
 {% else %}
+
+<hr>
+
 <div class='container'>
     <h1>Welcome to Austin eCommerce!  </h1>
 </div>
 {% endif %}
 
+<hr>
+<div class="container mt-8">
+  <h4>Here are some products might be interesting to You</h4>
+</div>
 
-
-<div class="container mt-5">
+<div class="container mt-3">
   <div class='row'>
     {% for obj in object_list %}
         <div class='col-12 col-md-6 col-lg-4'>
