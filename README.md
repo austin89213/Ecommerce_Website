@@ -5,7 +5,6 @@ Users are able to register, manage accounts and orders, post feedbacks, check pu
 
 # Functions
 -Accounts:
-
    -Registration
    -Login
    -Password reset
