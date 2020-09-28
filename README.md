@@ -4,9 +4,9 @@ A Django based eCommerce Website using multiple techs like Boostrap, AJAX, JavaS
 Users are able to register, manage accounts and orders, post feedbacks, check purchased / viewed products history and do shopping.
 
 # Functions
--Accounts:
-   -Registration
-   -Login
+   -Accounts:
+    -Registration
+    -Login
    -Password reset
    -Password change
    -Email activation
