@@ -4,9 +4,9 @@ A Django based eCommerce Website using multiple techs like Boostrap, AJAX, JavaS
 Users are able to register, manage accounts and orders, post feedbacks, check purchased / viewed products history and do shopping.
 
 # Functions
-  Accounts:
+-Accounts:
 
-   Registration
+   -Registration
    -Login
    -Password reset
    -Password change
@@ -19,7 +19,7 @@ Users are able to register, manage accounts and orders, post feedbacks, check pu
    -Purchased history
    -Orders check
 
-  -Products:
+-Products:
 
    -Featured products will be seen at home page
    -Purchase
@@ -27,38 +27,38 @@ Users are able to register, manage accounts and orders, post feedbacks, check pu
    -Add to cart or remove from cart (JavaScript)
    -Library (for digital products)
 
-  -Orders:
+-Orders:
   
    -Different order status (created, paid, shipped, refunded)
 
-  -Carts:
+-Carts:
   
    -Checkout by cards
    -Update the and showd how many items in the cart(JavaScript)
 
-  -Charges:
+-Charges:
 
    -Integrate Stripe API as the payment platform
 
-  -Contacts:
+-Contacts:
 
    -A contact form to collect advices
 
-  -Others:
+-Others:
 
    -RWD
 
 # Techniques & tools :
 
-  -Backend:
+ -Backend:
     -[Django (3.0.3)] (https://www.djangoproject.com/)
 
-  -Frontend:
+ -Frontend:
     -[Bootstrap (4)] (https://getbootstrap.com/)
-  -Database:
+ -Database:
 
-    -[SQLite] (https://www.sqlite.org/index.html)
-  -Deployment:
+   -[SQLite] (https://www.sqlite.org/index.html)
+ -Deployment:
 
-    -[AWS] (https://aws.amazon.com/)
-    -[Heroku] (https://www.heroku.com/)
+   -[AWS] (https://aws.amazon.com/)
+   -[Heroku] (https://www.heroku.com/)
