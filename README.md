@@ -51,7 +51,11 @@ Users are able to register, manage accounts and orders, post feedbacks, check pu
    
 - Database:
    - [SQLite] (https://www.sqlite.org/index.html)
+   
 - Deployment:
 
    - [AWS] (https://aws.amazon.com/)
    - [Heroku] (https://www.heroku.com/)
+   
+- Third Part API:
+   - [Stripe] (https://stripe.com/)
