@@ -20,7 +20,7 @@ TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'o85h8uq*!le$e9xntoqz49y0ed(ln3jqxlj)!rft3!puo0zts9'
+SECRET_KEY = 'your django key'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -73,12 +73,12 @@ AUTH_USER_MODEL = 'accounts.User' #changes the built-in user model to custom one
 FORCE_SESSION_TO_ONE = True
 FORCE_INACTIVE_USER_SESSION = True
 
-MAILCHIMP_API_KEY="83cbf4de381181f23a6312498744a599-us17"
-MAILCHIMP_DATA_CENTER="us17"
-MAILCHIMP_EMAIL_LIST_ID="703f52d0ce"
+MAILCHIMP_API_KEY="your mailchimp api key"
+MAILCHIMP_DATA_CENTER="--"
+MAILCHIMP_EMAIL_LIST_ID="--"
 
-STRIPE_SECRET_KEY = "sk_test_51HFuriJcne6vOrPOXQdB8bUgYwUObn6mLtttxaLLAART2jK47Bhn4BH1xEuvn7lzX8NYCGqHhf1SjunZSh17TksJ00ydW2APAM"
-STRIPE_PUB_KEY = 'pk_test_51HFuriJcne6vOrPOBBEZbDPXuCFUqabKBeTW6Sr0Cctl1RhbDAvPx4mREnisoX1gYVK5281C80ThUUKV5arnilCg00XX6T1TlS'
+STRIPE_SECRET_KEY = "your STRIPE_SECRET_KEY"
+STRIPE_PUB_KEY = 'your STRIPE_PUB_KEY'
 
 
 MIDDLEWARE = [
@@ -186,7 +186,7 @@ SECURE_HSTS_SECONDS             = None
 SECURE_HSTS_INCLUDE_SUBDOMAINS  = False
 SECURE_FRAME_DENY               = False
 
-AWS_GROUP_NAME = "Austin_eCommerce_Group"
-AWS_USER_NAME  = "austin-ecommer-user"
-AWS_ACCESS_KEY = "AKIATWMS6J2PV4DMXBVG"
-AWS_SECERT_KEY = "rAPXJYCqRfTIVI7vjENMS0u+KBox/wXuG7FhjSty"
+AWS_GROUP_NAME = "Your AWS_GROUP_NAME"
+AWS_USER_NAME  = "Your AWS_USER_NAME"
+AWS_ACCESS_KEY = "Your AWS_ACCESS_KEY"
+AWS_SECERT_KEY = "Your AWS_SECERT_KEY"
