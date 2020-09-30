@@ -193,10 +193,5 @@ SECURE_FRAME_DENY               = True
 
 AWS_GROUP_NAME = "Austin_eCommerce_Group"
 AWS_USER_NAME  = "austin-ecommer-user"
-<<<<<<< HEAD
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY =os.environ.get('AWS_SECRET_ACCESS_KEY')
-=======
-AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', "AKIATWMS6J2PV4DMXBVG")
-AWS_SECRET_ACCESS_KEY =os.environ.get('AWS_SECRET_ACCESS_KEY',"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")
->>>>>>> 6a08f0b985a52d9d42d28a400aa4f262b7b862ba
