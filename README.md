@@ -1,5 +1,5 @@
 # Project description
-A Django based eCommerce Website using multiple techs like Boostrap, AJAX, JavaScript to improve frontend experience. Integrated third party API - Stripe to leverage payment service. Deployed on Heroku and used AWS to store and retrieve files.
+A Django based eCommerce Website using multiple techs like Bootstrap, AJAX, JavaScript to improve frontend experience. Integrated third party API - Stripe to leverage payment service. Deployed on Heroku and used AWS to store and retrieve files.
 
 Users are able to register, manage accounts and orders, post feedbacks, check purchased / viewed products history and do shopping.
 
