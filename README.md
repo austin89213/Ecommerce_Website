@@ -22,21 +22,24 @@ Users are able to register, manage accounts and orders, post feedbacks, check pu
    - Featured products will be seen at home page
    - Purchase
    - View
-   - Add to cart or remove from cart (JavaScript)
-   - Library (for digital products)
+   - Add to a cart or remove from a cart (JavaScript)
+   - Library (for digital products to download files)
 
 - Orders:
-- Different order status (created, paid, shipped, refunded)
+   - Different order status (created, paid, shipped, refunded)
 
 - Carts:
    - Checkout by cards
-   - Update the and showd how many items in the cart(JavaScript)
+   - Update the and showd how many items in the cart on navbar(JavaScript)
 
 - Charges:
    - Integrate Stripe API as the payment platform
 
 - Contacts:
    - Provide a contact form to collect advices
+
+- Navabar:
+   - Link of the current path will be lighter to notice which page the users are
 
 - Others:
    - RWD
@@ -48,6 +51,7 @@ Users are able to register, manage accounts and orders, post feedbacks, check pu
 
 - Frontend:
    - [Bootstrap (4)] (https://getbootstrap.com/)
+   - [jQuery(3.5)] (https://jquery.com/)
 
 - Database:
    - [SQLite] (https://www.sqlite.org/index.html)
