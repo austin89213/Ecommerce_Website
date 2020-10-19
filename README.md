@@ -47,28 +47,28 @@ Users are able to register, manage accounts and orders, post feedbacks, check pu
 # Techniques & tools :
 
 - Backend:
-   - [Django (3.0.3)] (https://www.djangoproject.com/)
+   - Django (3.0.3) (https://www.djangoproject.com/)
 
 - Frontend:
-   - [Bootstrap (4)] (https://getbootstrap.com/)
-   - [jQuery(3.5)] (https://jquery.com/)
+   - Bootstrap (4) (https://getbootstrap.com/)
+   - jQuery(3.5) (https://jquery.com/)
 
 - Database:
-   - [SQLite] (https://www.sqlite.org/index.html)
+   - SQLite (https://www.sqlite.org/index.html)
 
 - Deployment:
 
-   - [AWS] (https://aws.amazon.com/)
-   - [Heroku] (https://www.heroku.com/)
+   - AWS (https://aws.amazon.com/)
+   - Heroku (https://www.heroku.com/)
 
 - Third Part API:
-   - [Stripe] (https://stripe.com/)
+   - Stripe (https://stripe.com/)
 
 # To use:
 - 1. Run git clone https://github.com/austin89213/Ecommerce_Website in terminal / cmd to clone or download the file directly
 - 2. Create an virtual env with Python 3 and Pip
 - 3. Run terminal / cmd and cd to the main directory
-- 4. Run 'install -r requirements.txt'
+- 4. Run 'pip install -r requirements.txt'
 - 4. Run 'python manage.py createsuperuser' for the logging in
 - 5. Run 'python manage.py runserver'
 - 6. Open the url provided (http://127.0.0.1:8000/)
