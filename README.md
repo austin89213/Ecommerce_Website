@@ -63,12 +63,3 @@ Users are able to register, manage accounts and orders, post feedbacks, check pu
 
 - Third Part API:
    - Stripe (https://stripe.com/)
-
-# To use:
-- 1. Run git clone https://github.com/austin89213/Ecommerce_Website in terminal / cmd to clone or download the file directly
-- 2. Create an virtual env with Python 3 and Pip
-- 3. Run terminal / cmd and cd to the main directory
-- 4. Run 'pip install -r requirements.txt'
-- 4. Run 'python manage.py createsuperuser' for the logging in
-- 5. Run 'python manage.py runserver'
-- 6. Open the url provided (http://127.0.0.1:8000/)
