@@ -15,6 +15,7 @@
 
     <p class="card-text">{{instance.description|truncatewords:10}}</p>
     <p class="price">${{instance.price}}</p>
+     <p>Viewd {{instance.product_viewed}} times</p>
     <a href="{% url 'products:detail' slug=instance.slug %}" class="btn btn-primary">View</a>
     <h1>
     {% include "products/snippets/update_cart.html" with product=instance cart=cart %}

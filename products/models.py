@@ -67,6 +67,7 @@ class Product(models.Model):
     active          = models.BooleanField(default=True)
     timestamp       = models.DateTimeField(auto_now_add=True)
     is_digital      = models.BooleanField(default=False) # User Libary
+    product_viewed  = models.IntegerField(default=0)
 
     objects = ProductManager()
 
@@ -86,6 +87,10 @@ class Product(models.Model):
     def get_downloads(self):
         qs = self.productfile_set.all()
         return qs
+
+    def viewed(self):
+        self.product_viewed +=1
+        self.save()
 
 def product_pre_save_receiver(sender,instance,*args,**kwargs):
     if not instance.slug:

@@ -61,8 +61,11 @@ class ProductDetail(ObjectViewedMixin,generic.DetailView):
         if product_bought:
             context['bought'] = 'Purchased'
         return context
-
-
+    def get_object(self):
+        obj = super().get_object()
+        obj.viewed()
+        obj.save()
+        return obj
 
     def get_ip_address(self):
         ip = object_viewed_signal.send(instance.__class__,instance=instance,request=request)

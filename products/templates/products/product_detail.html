@@ -8,10 +8,12 @@
       {% if bought %}
         <h4>#{{bought}}</h4>
       {% endif %}
-  
+       <p>Viewd : {{object.product_viewed}} times</p>
       <p>Added : {{object.timestamp|timesince}} ago</p>
-      Description: {{object.description|linebreaks}}
+      <p>Description: {{object.description|linebreaks}}</p>
+
       ${{object.price}} <br>
+
       <div class="mt-3">
         {% if object.image %}
         <img src="{{ object.image.url }}" alt="">
