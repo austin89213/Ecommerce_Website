@@ -11,7 +11,6 @@ Users are able to register, manage accounts and orders, post feedbacks, check pu
    - Password change
    - Email activation
    - Update details (Name only currently)
-   - Confirgurations (Email Marketing Prefernce)
    - Payment method
    - Address
    - Viewd history
@@ -21,10 +20,11 @@ Users are able to register, manage accounts and orders, post feedbacks, check pu
 - Products:
    - Featured products will be seen at home page
    - Purchase
-   - View
-   - Add to a cart or remove from a cart (JavaScript)
+   - View (Viewed times would be recorded)
+   - Add to a cart or remove from a cart (jQuery)
+   - Digital Attribute
    - Library (for digital products to download files)
-
+   
 - Orders:
    - Different order status (created, paid, shipped, refunded)
 
