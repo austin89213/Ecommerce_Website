@@ -24,13 +24,13 @@ Users are able to register, manage accounts and orders, post feedbacks, check pu
    - Add to a cart or remove from a cart (jQuery)
    - Digital Attribute
    - Library (for digital products to download files)
-   
+
 - Orders:
    - Different order status (created, paid, shipped, refunded)
 
 - Carts:
    - Checkout by cards
-   - Update the and showd how many items in the cart on navbar(JavaScript)
+   - Update the cart and show how many items in it on navbar (jQuery)
 
 - Charges:
    - Integrate Stripe API as the payment platform
