@@ -1,5 +1,8 @@
 .DS_STORE
 *.atom-project
+
+/migrations/
+
 fasttracktojquery/
 # Virtualenv related
 bin/
@@ -8,6 +11,7 @@ pip-selfcheck.json
 .md
 Notes.md
 Notes
+
 # Django related
 Ecommerce_Website/settings/local.py
 # src/<yourproject>/settings/local.py
