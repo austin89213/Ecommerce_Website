@@ -1,6 +1,6 @@
 from django.views import generic
-from django.http import  Http404, HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404,redirect
+from django.http import Http404, HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Product, ProductFile
 from orders.models import ProductPurchase
 from carts.models import Cart
@@ -10,21 +10,26 @@ from billing.models import BillingProfile
 from django.contrib import messages
 # Create your views here.
 
+
 class ProductFeaturedList(generic.ListView):
     template_name = "products/product_list.html"
-    def get_queryset(self,*args,**kwargs):
+
+    def get_queryset(self, *args, **kwargs):
         request = self.request
         return Product.objects.all().featured()
 
-class ProductFeaturedDetail(ObjectViewedMixin,generic.DetailView):
+
+class ProductFeaturedDetail(ObjectViewedMixin, generic.DetailView):
     template_name = "products/featured_detail.html"
-    def get_queryset(self,*args,**kwargs):
+
+    def get_queryset(self, *args, **kwargs):
         request = self.request
         return Product.objects.all().featured()
 
 
 class ProductList(generic.ListView):
     model = Product
+
     def check_bought(self):
         product_bought = False
         if self.request.user.is_authenticated:
@@ -34,14 +39,13 @@ class ProductList(generic.ListView):
         return product_bought
 
     def get_context_data(self, *args, **kwargs):
-        context = super(ProductList,self).get_context_data(*args, **kwargs)
+        context = super(ProductList, self).get_context_data(*args, **kwargs)
         cart_obj, new_obj = Cart.objects.new_or_get(self.request)
         context['cart'] = cart_obj
         return context
 
 
-
-class ProductDetail(ObjectViewedMixin,generic.DetailView):
+class ProductDetail(ObjectViewedMixin, generic.DetailView):
     model = Product
 
     def check_bought(self):
@@ -54,13 +58,14 @@ class ProductDetail(ObjectViewedMixin,generic.DetailView):
         return product_bought
 
     def get_context_data(self, *args, **kwargs):
-        context = super(ProductDetail,self).get_context_data(*args, **kwargs)
+        context = super(ProductDetail, self).get_context_data(*args, **kwargs)
         cart_obj, new_obj = Cart.objects.new_or_get(self.request)
         context['cart'] = cart_obj
         product_bought = self.check_bought()
         if product_bought:
             context['bought'] = 'Purchased'
         return context
+
     def get_object(self):
         obj = super().get_object()
         obj.viewed()
@@ -68,19 +73,24 @@ class ProductDetail(ObjectViewedMixin,generic.DetailView):
         return obj
 
     def get_ip_address(self):
-        ip = object_viewed_signal.send(instance.__class__,instance=instance,request=request)
+        ip = object_viewed_signal.send(instance.__class__, instance=instance, request=request)
         return ip
+
+
 import os
 from wsgiref.util import FileWrapper
-from django.conf import  settings
-from mimetypes import  guess_type
-from orders.models import  ProductPurchase
+from django.conf import settings
+from mimetypes import guess_type
+from orders.models import ProductPurchase
+
 
 class ProductDownloadView(generic.View):
-    def get(self,request, *args,**kwargs):
+    def get(self, request, *args, **kwargs):
         slug = kwargs.get('slug')
         pk = kwargs.get('pk')
-        downloads_qs = ProductFile.objects.filter(pk=pk,product__slug=slug) # == ProdcutFile.objects.filter(product=product_obj)
+        downloads_qs = ProductFile.objects.filter(
+            pk=pk, product__slug=slug
+        )  # == ProdcutFile.objects.filter(product=product_obj)
         if downloads_qs.count() != 1:
             raise Http404('Download not found')
         download_obj = downloads_qs.first()
@@ -99,7 +109,7 @@ class ProductDownloadView(generic.View):
             if download_obj.product in purchased_products:
                 can_download = True
         if not can_download or not user_ready:
-            messages.error(request,"You do not have access to download this item")
+            messages.error(request, "You do not have access to download this item")
             return redirect(download_obj.get_default_url())
 
         aws_filepath = download_obj.generate_download_url()
@@ -121,23 +131,25 @@ class ProductDownloadView(generic.View):
         #     response['X-SendFile'] = str(download_obj.name)
         #     return response
 
-class UserProductHistoryView(LoginRequiredMixin,generic.ListView):
+
+class UserProductHistoryView(LoginRequiredMixin, generic.ListView):
     model = Product
     template_name = 'products/user_product_history_viewd.html'
+
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         cart_obj, new_obj = Cart.objects.new_or_get(self.request)
         context['cart'] = cart_obj
         return context
 
-    def get_queryset(self,*args,**kwargs):
+    def get_queryset(self, *args, **kwargs):
         request = self.request
         views = request.user.objectviewed_set.by_model(Product, return_model_queryset=True)
 
         return views
 
 
-class UserProductHistoryPurchase(LoginRequiredMixin,generic.ListView):
+class UserProductHistoryPurchase(LoginRequiredMixin, generic.ListView):
     model = Product
     template_name = 'products/user_product_history_purchased.html'
     context_object_name = 'products_purchased'
@@ -148,7 +160,7 @@ class UserProductHistoryPurchase(LoginRequiredMixin,generic.ListView):
         context['cart'] = cart_obj
         return context
 
-    def get_queryset(self,*args,**kwargs):
+    def get_queryset(self, *args, **kwargs):
         # billing_profile = self.request.user.billing_profile
         # product_bought = ProductPurchase.objects.by_request(self.request).filter(refunded=False)
         # product_refunded = ProductPurchase.objects.by_request(self.request).filter(refunded=True)
@@ -161,14 +173,17 @@ class UserProductHistoryPurchase(LoginRequiredMixin,generic.ListView):
         # obj_refunded = Product.objects.filter(pk__in=refunded_ids)
         # print(f'bought:{obj_bought},refunded:{obj_refunded}')
         product_active = ProductPurchase.objects.active().products_by_request(self.request)
-        product_refunded = ProductPurchase.objects.refunded().products_by_request(self.request).exclude(id__in=product_active)
-        queryset={'product_active':product_active,'product_refunded':product_refunded}
+        product_refunded = ProductPurchase.objects.refunded().products_by_request(self.request
+                                                                                 ).exclude(id__in=product_active)
+        queryset = {'product_active': product_active, 'product_refunded': product_refunded}
         print(f'active:{product_active},refunded:{product_refunded}')
         return queryset
 
-class LibraryView(LoginRequiredMixin,generic.ListView):
-    template_name='products/library.html'
+
+class LibraryView(LoginRequiredMixin, generic.ListView):
+    template_name = 'products/library.html'
     model = Product
+
     def get_queryset(self):
         qs = ProductPurchase.objects.active().products_by_request(self.request).filter(is_digital=True)
         print(qs)

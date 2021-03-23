@@ -1,7 +1,6 @@
 import datetime
 import os
 
-
 AWS_GROUP_NAME = 'Augustine_eCommerce_Group'
 AWS_USER_NAME = 'augustine-ecommerce-user'
 AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
@@ -9,7 +8,6 @@ AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
 AWS_FILE_EXPIRE = 200
 AWS_PRELOAD_METADATA = True
 AWS_QUERYSTRING_AUTH = True
-
 
 DEFAULT_FILE_STORAGE = 'Ecommerce_Website.aws.utils.MediaRootS3BotoStorage'
 STATICFILES_STORAGE = 'Ecommerce_Website.aws.utils.StaticRootS3BotoStorage'
@@ -33,6 +31,6 @@ AWS_HEADERS = {
 AWS_QUERYSTRING_AUTH = True
 
 PROTECTED_DIR_NAME = 'protected'
-PROTECTED_MEDIA_URL = '//%s.s3.amazonaws.com/%s/' %( AWS_STORAGE_BUCKET_NAME, PROTECTED_DIR_NAME)
+PROTECTED_MEDIA_URL = '//%s.s3.amazonaws.com/%s/' % (AWS_STORAGE_BUCKET_NAME, PROTECTED_DIR_NAME)
 
-AWS_DOWNLOAD_EXPIRE = 5000 #(0ptional, in milliseconds)
+AWS_DOWNLOAD_EXPIRE = 5000  #(0ptional, in milliseconds)

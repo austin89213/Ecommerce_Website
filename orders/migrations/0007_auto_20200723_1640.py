@@ -20,6 +20,8 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='order',
             name='billing_profile',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='billing.BillingProfile'),
+            field=models.ForeignKey(
+                blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='billing.BillingProfile'
+            ),
         ),
     ]

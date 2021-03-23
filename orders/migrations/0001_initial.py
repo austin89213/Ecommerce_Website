@@ -18,7 +18,16 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('order_id', models.CharField(max_length=120)),
-                ('status', models.CharField(choices=[('created', 'Created'), ('paid', 'Paid'), ('shipeed', 'Shipped'), ('refunded', 'Refunded')], default='created', max_length=120)),
+                (
+                    'status',
+                    models.CharField(
+                        choices=[
+                            ('created', 'Created'), ('paid', 'Paid'), ('shipeed', 'Shipped'), ('refunded', 'Refunded')
+                        ],
+                        default='created',
+                        max_length=120
+                    )
+                ),
                 ('shipping_total', models.DecimalField(decimal_places=2, default=60, max_digits=100)),
                 ('order_total', models.DecimalField(decimal_places=2, default=0.0, max_digits=100)),
                 ('cart', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='carts.Cart')),

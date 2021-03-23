@@ -25,6 +25,11 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='productfile',
             name='file',
-            field=models.FileField(storage=django.core.files.storage.FileSystemStorage(location='C:\\Users\\TSAI\\Desktop\\coding\\django\\Django_Stuff\\Ecommerce_Website\\protected_media'), upload_to=products.models.upload_product_file_location),
+            field=models.FileField(
+                storage=django.core.files.storage.FileSystemStorage(
+                    location='C:\\Users\\TSAI\\Desktop\\coding\\django\\Django_Stuff\\Ecommerce_Website\\protected_media'
+                ),
+                upload_to=products.models.upload_product_file_location
+            ),
         ),
     ]

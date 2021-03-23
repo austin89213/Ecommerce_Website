@@ -22,7 +22,16 @@ class Migration(migrations.Migration):
                 ('active', models.BooleanField(default=True)),
                 ('update', models.DateTimeField(auto_now_add=True)),
                 ('timestamp', models.DateTimeField(auto_now_add=True)),
-                ('user', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, unique=True)),
+                (
+                    'user',
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                        unique=True
+                    )
+                ),
             ],
         ),
     ]

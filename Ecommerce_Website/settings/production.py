@@ -14,7 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -35,9 +35,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 BASE_URL = 'https://austin-ecommerce.herokuapp.com'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-ADMINS = (
-    ('Austin Lin', EMAIL_HOST_USER),
-)
+ADMINS = (('Austin Lin', EMAIL_HOST_USER), )
 
 MANAGERS = ADMINS
 # Application definition
@@ -64,24 +62,19 @@ INSTALLED_APPS = [
     'products',
     'search',
     'tags',
+]
 
-    ]
-
-
-
-AUTH_USER_MODEL = 'accounts.User' #changes the built-in user model to custom one
-
+AUTH_USER_MODEL = 'accounts.User'  #changes the built-in user model to custom one
 
 FORCE_SESSION_TO_ONE = True
 FORCE_INACTIVE_USER_SESSION = True
 
-MAILCHIMP_API_KEY=os.environ.get('MAILCHIMP_API_KEY')
-MAILCHIMP_DATA_CENTER="us17"
-MAILCHIMP_EMAIL_LIST_ID=os.environ.get('MAILCHIMP_EMAIL_LIST_ID')
+MAILCHIMP_API_KEY = os.environ.get('MAILCHIMP_API_KEY')
+MAILCHIMP_DATA_CENTER = "us17"
+MAILCHIMP_EMAIL_LIST_ID = os.environ.get('MAILCHIMP_EMAIL_LIST_ID')
 
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
 STRIPE_PUB_KEY = os.environ.get('STRIPE_PUB_KEY')
-
 
 MIDDLEWARE = [
     'django.middleware.common.BrokenLinkEmailsMiddleware',
@@ -99,21 +92,22 @@ ROOT_URLCONF = 'Ecommerce_Website.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATE_DIR,],
+        'DIRS': [TEMPLATE_DIR, ],
         'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
+        'OPTIONS':
+            {
+                'context_processors':
+                    [
+                        'django.template.context_processors.debug',
+                        'django.template.context_processors.request',
+                        'django.contrib.auth.context_processors.auth',
+                        'django.contrib.messages.context_processors.messages',
+                    ],
+            },
     },
 ]
 
 WSGI_APPLICATION = 'Ecommerce_Website.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
@@ -126,7 +120,8 @@ DATABASES = {
 }
 
 import dj_database_url
-db_from_env = dj_database_url.config() #change the DB to postgreSQL Databse in HEROKU
+
+db_from_env = dj_database_url.config()  #change the DB to postgreSQL Databse in HEROKU
 DATABASES['default'].update(db_from_env)
 DATABASES['default']['CONN_MAX_AGE'] = 500
 
@@ -148,7 +143,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -162,18 +156,17 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-PROTECTED_ROOT = os.path.join(BASE_DIR,'protected_media')
+PROTECTED_ROOT = os.path.join(BASE_DIR, 'protected_media')
 
 from Ecommerce_Website.aws.conf import *
 
@@ -181,17 +174,17 @@ LOGIN_URL = '/account/login/'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
-CORS_REPLACE_HTTPS_REFERER      = True
-HOST_SCHEME                     = "https://"
-SECURE_PROXY_SSL_HEADER         = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT             = True
-SESSION_COOKIE_SECURE           = True
-CSRF_COOKIE_SECURE              = True
-SECURE_HSTS_INCLUDE_SUBDOMAINS  = True
-SECURE_HSTS_SECONDS             = 1000000
-SECURE_FRAME_DENY               = True
+CORS_REPLACE_HTTPS_REFERER = True
+HOST_SCHEME = "https://"
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_SECONDS = 1000000
+SECURE_FRAME_DENY = True
 
 AWS_GROUP_NAME = "Austin_eCommerce_Group"
-AWS_USER_NAME  = "austin-ecommer-user"
+AWS_USER_NAME = "austin-ecommer-user"
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY =os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')

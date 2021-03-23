@@ -14,7 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -34,9 +34,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 BASE_URL = '127.0.0.1:8000'
-ADMINS = (
-    ('Austin Lin', 'your email'),
-)
+ADMINS = (('Austin Lin', 'your email'), )
 
 MANAGERS = ADMINS
 # Application definition
@@ -63,23 +61,19 @@ INSTALLED_APPS = [
     'products',
     'search',
     'tags',
-    ]
+]
 
-
-
-AUTH_USER_MODEL = 'accounts.User' #changes the built-in user model to custom one
-
+AUTH_USER_MODEL = 'accounts.User'  #changes the built-in user model to custom one
 
 FORCE_SESSION_TO_ONE = True
 FORCE_INACTIVE_USER_SESSION = True
 
-MAILCHIMP_API_KEY="your mailchimp api key"
-MAILCHIMP_DATA_CENTER="--"
-MAILCHIMP_EMAIL_LIST_ID="--"
+MAILCHIMP_API_KEY = "your mailchimp api key"
+MAILCHIMP_DATA_CENTER = "--"
+MAILCHIMP_EMAIL_LIST_ID = "--"
 
 STRIPE_SECRET_KEY = "your STRIPE_SECRET_KEY"
 STRIPE_PUB_KEY = 'your STRIPE_PUB_KEY'
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -90,7 +84,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.common.BrokenLinkEmailsMiddleware',
-
 ]
 
 ROOT_URLCONF = 'Ecommerce_Website.urls'
@@ -98,21 +91,22 @@ ROOT_URLCONF = 'Ecommerce_Website.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATE_DIR,],
+        'DIRS': [TEMPLATE_DIR, ],
         'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
+        'OPTIONS':
+            {
+                'context_processors':
+                    [
+                        'django.template.context_processors.debug',
+                        'django.template.context_processors.request',
+                        'django.contrib.auth.context_processors.auth',
+                        'django.contrib.messages.context_processors.messages',
+                    ],
+            },
     },
 ]
 
 WSGI_APPLICATION = 'Ecommerce_Website.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
@@ -123,7 +117,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -143,7 +136,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -157,18 +149,17 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-PROTECTED_ROOT = os.path.join(BASE_DIR,'protected_media')
+PROTECTED_ROOT = os.path.join(BASE_DIR, 'protected_media')
 
 from Ecommerce_Website.aws.conf import *
 
@@ -176,17 +167,17 @@ LOGIN_URL = '/account/login/'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
-CORS_REPLACE_HTTPS_REFERER      = False
-HOST_SCHEME                     = "http://"
-SECURE_PROXY_SSL_HEADER         = None
-SECURE_SSL_REDIRECT             = False
-SESSION_COOKIE_SECURE           = False
-CSRF_COOKIE_SECURE              = False
-SECURE_HSTS_SECONDS             = None
-SECURE_HSTS_INCLUDE_SUBDOMAINS  = False
-SECURE_FRAME_DENY               = False
+CORS_REPLACE_HTTPS_REFERER = False
+HOST_SCHEME = "http://"
+SECURE_PROXY_SSL_HEADER = None
+SECURE_SSL_REDIRECT = False
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
+SECURE_HSTS_SECONDS = None
+SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+SECURE_FRAME_DENY = False
 
 AWS_GROUP_NAME = "Your AWS_GROUP_NAME"
-AWS_USER_NAME  = "Your AWS_USER_NAME"
+AWS_USER_NAME = "Your AWS_USER_NAME"
 AWS_ACCESS_KEY = "Your AWS_ACCESS_KEY"
 AWS_SECERT_KEY = "Your AWS_SECERT_KEY"

@@ -1,11 +1,14 @@
 from django import forms
 from django.contrib.auth import get_user_model
 from django.urls import reverse
+
 User = get_user_model()
+
+
 class ContactForm(forms.Form):
-    fullname = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Fullname'}))
-    email = forms.EmailField(widget=forms.EmailInput(attrs={'class':'form-control','placeholder':'Email'}))
-    content = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control','placeholder':'Content'}))
+    fullname = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Fullname'}))
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}))
+    content = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Content'}))
 
     # def clean(self):
     #     all_cleaned_data = super().clean()
@@ -20,9 +23,11 @@ class ContactForm(forms.Form):
             raise forms.ValidationError("Email has to be gamil")
         return email
 
+
 class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
+
 
 class RegisterForm(forms.Form):
     username = forms.CharField()
@@ -45,7 +50,7 @@ class RegisterForm(forms.Form):
         return email
 
     def clean(self):
-        data =self.cleaned_data
+        data = self.cleaned_data
         password = data.get('password')
         password2 = data.get('password2')
         if password != password2:

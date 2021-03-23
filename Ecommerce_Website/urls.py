@@ -16,27 +16,29 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from .views import home_page, about_page, HomePage
-from django.contrib.auth.views import LoginView,LogoutView
-from django.views.generic import RedirectView,TemplateView
+from django.contrib.auth.views import LoginView, LogoutView
+from django.views.generic import RedirectView, TemplateView
 from billing.views import payment_method_view
 from django.conf import settings
 from django.conf.urls.static import static
 from contacts.views import contact_page
+
 urlpatterns = [
-    path('admin/', admin.site.urls,),
+    path(
+        'admin/',
+        admin.site.urls,
+    ),
     path('', HomePage.as_view(), name='home'),
-    path('about/',about_page, name='about'),
-    path('contact/',contact_page, name='contact'),
-    path('accounts/',include("accounts.password.urls",)),
-    path('account/',include("accounts.urls",namespace='accounts')),
-    path('addresses/',include("addresses.urls",namespace='addresses')),
-    path('billing/',include('billing.urls',namespace='billing')),
-    path('carts/',include("carts.urls",namespace='carts')),
-    path('marketing/',include('marketing.urls',namespace='marketing')),
-    path('orders/',include('orders.urls',namespace='orders')),
-    path('products/',include("products.urls",namespace='products')),
-    path('search/',include("search.urls",namespace='search')),
-
-
+    path('about/', about_page, name='about'),
+    path('contact/', contact_page, name='contact'),
+    path('accounts/', include("accounts.password.urls", )),
+    path('account/', include("accounts.urls", namespace='accounts')),
+    path('addresses/', include("addresses.urls", namespace='addresses')),
+    path('billing/', include('billing.urls', namespace='billing')),
+    path('carts/', include("carts.urls", namespace='carts')),
+    path('marketing/', include('marketing.urls', namespace='marketing')),
+    path('orders/', include('orders.urls', namespace='orders')),
+    path('products/', include("products.urls", namespace='products')),
+    path('search/', include("search.urls", namespace='search')),
 ]
 urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

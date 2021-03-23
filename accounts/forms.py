@@ -2,14 +2,16 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
-from .models import EmailActivation,GuestEmail
+from .models import EmailActivation, GuestEmail
 from django.contrib import messages
 from django.utils.safestring import mark_safe
+
 User = get_user_model()
 
 
 class ReactivateEmailForm(forms.Form):
-    email           = forms.EmailField()
+    email = forms.EmailField()
+
     def clean_email(self):
         email = self.cleaned_data.get('email')
         qs = User.objects.filter(email=email)
@@ -19,6 +21,7 @@ class ReactivateEmailForm(forms.Form):
             """.format(link=signup_link)
             raise forms.ValidationError(mark_safe(msg))
         return email
+
 
 class UserAdminCreationForm(forms.ModelForm):
     """
@@ -30,7 +33,7 @@ class UserAdminCreationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('email','full_name')
+        fields = ('email', 'full_name')
 
     def clean_password2(self):
         # Check that the two password entries match
@@ -48,12 +51,14 @@ class UserAdminCreationForm(forms.ModelForm):
             user.save()
         return user
 
+
 class UserDetailChangeForm(forms.ModelForm):
     full_name = forms.CharField(label='Name', required=False)
 
     class Meta:
         model = User
         fields = ['full_name']
+
 
 class UserAdminChangeForm(forms.ModelForm):
     """A form for updating users. Includes all the fields on
@@ -64,7 +69,7 @@ class UserAdminChangeForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('email','full_name', 'password', 'is_active', 'admin')
+        fields = ('email', 'full_name', 'password', 'is_active', 'admin')
 
     def clean_password(self):
         # Regardless of what the user provides, return the initial value.
@@ -73,11 +78,10 @@ class UserAdminChangeForm(forms.ModelForm):
         return self.initial["password"]
 
 
-
 class ContactForm(forms.Form):
-    fullname = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Fullname'}))
-    email = forms.EmailField(widget=forms.EmailInput(attrs={'class':'form-control','placeholder':'Email'}))
-    content = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control','placeholder':'Content'}))
+    fullname = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Fullname'}))
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}))
+    content = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Content'}))
 
     # def clean(self):
     #     all_cleaned_data = super().clean()
@@ -92,13 +96,12 @@ class ContactForm(forms.Form):
             raise forms.ValidationError("Email has to be gamil")
         return email
 
+
 class GuestForm(forms.ModelForm):
     #email    = forms.EmailField()
     class Meta:
         model = GuestEmail
-        fields = [
-            'email'
-        ]
+        fields = ['email']
 
     def __init__(self, request, *args, **kwargs):
         self.request = request
@@ -113,9 +116,11 @@ class GuestForm(forms.ModelForm):
             request.session['guest_email_id'] = obj.id
         return obj
 
+
 class LoginForm(forms.Form):
     email = forms.EmailField(label='Email')
     password = forms.CharField(widget=forms.PasswordInput)
+
 
 class RegisterForm(forms.ModelForm):
     """
@@ -127,7 +132,7 @@ class RegisterForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('email','full_name')
+        fields = ('email', 'full_name')
 
     def clean_password2(self):
         # Check that the two password entries match
@@ -141,12 +146,11 @@ class RegisterForm(forms.ModelForm):
         # Save the provided password in hashed format
         user = super(RegisterForm, self).save(commit=False)
         user.set_password(self.cleaned_data["password1"])
-        user.is_active = False # send confirmation email to active via singals
+        user.is_active = False  # send confirmation email to active via singals
 
         if commit:
             user.save()
         return user
-
 
 
 # class RegisterForm(forms.Form):

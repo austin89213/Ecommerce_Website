@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import GuestEmail,EmailActivation
+from .models import GuestEmail, EmailActivation
 from django.contrib.auth import get_user_model
-from .forms import UserAdminChangeForm,UserAdminCreationForm
+from .forms import UserAdminChangeForm, UserAdminCreationForm
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 # Register your models here.
@@ -16,24 +16,26 @@ class UserAdmin(BaseUserAdmin):
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
     # that reference specific fields on auth.User.
-    list_display = ('email', 'admin','timestamp')
-    list_filter = ('admin','staff','is_active')
+    list_display = ('email', 'admin', 'timestamp')
+    list_filter = ('admin', 'staff', 'is_active')
     fieldsets = (
-        (None, {'fields': ('email', 'password')}),
-        ('Personal info', {'fields': ('full_name',)}),
-        ('Permissions', {'fields': ('admin','staff','is_active')}),
+        (None, {
+            'fields': ('email', 'password')
+        }),
+        ('Personal info', {
+            'fields': ('full_name', )
+        }),
+        ('Permissions', {
+            'fields': ('admin', 'staff', 'is_active')
+        }),
     )
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
     # overrides get_fieldsets to use this attribute when creating a user.
-    add_fieldsets = (
-        (None, {
-            'classes': ('wide',),
-            'fields': ('email', 'password1', 'password2')}
-        ),
-    )
-    search_fields = ('email','full_name')
-    ordering = ('email','full_name')
+    add_fieldsets = ((None, {'classes': ('wide', ), 'fields': ('email', 'password1', 'password2')}), )
+    search_fields = ('email', 'full_name')
+    ordering = ('email', 'full_name')
     filter_horizontal = ()
+
 
 # Remove Group Model from admin. We're not using it.
 admin.site.unregister(Group)
@@ -41,14 +43,18 @@ admin.site.unregister(Group)
 
 class EmailActivationAdmin(admin.ModelAdmin):
     search_fields = ['email']
+
     class Meta:
         model = EmailActivation
 
+
 class GuestEmailAdmin(admin.ModelAdmin):
     search_fields = ['email']
+
     class Meta:
         model = GuestEmail
-        
-admin.site.register(EmailActivation,EmailActivationAdmin)
-admin.site.register(User,UserAdmin)
-admin.site.register(GuestEmail,GuestEmailAdmin)
+
+
+admin.site.register(EmailActivation, EmailActivationAdmin)
+admin.site.register(User, UserAdmin)
+admin.site.register(GuestEmail, GuestEmailAdmin)

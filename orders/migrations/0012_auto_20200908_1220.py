@@ -21,7 +21,10 @@ class Migration(migrations.Migration):
                 ('refunded', models.BooleanField(default=False)),
                 ('timestamp', models.DateTimeField(auto_now_add=True)),
                 ('updated', models.DateTimeField(auto_now=True)),
-                ('billing_profile', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='billing.BillingProfile')),
+                (
+                    'billing_profile',
+                    models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='billing.BillingProfile')
+                ),
                 ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='products.Product')),
             ],
         ),
@@ -29,7 +32,5 @@ class Migration(migrations.Migration):
             old_name='ProductPurchasedManager',
             new_name='ProductPurchaseManager',
         ),
-        migrations.DeleteModel(
-            name='ProductPurchased',
-        ),
+        migrations.DeleteModel(name='ProductPurchased', ),
     ]

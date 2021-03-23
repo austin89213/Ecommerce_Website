@@ -21,7 +21,10 @@ class Migration(migrations.Migration):
                 ('exp_month', models.IntegerField()),
                 ('exp_year', models.IntegerField()),
                 ('last4', models.CharField(blank=True, max_length=4, null=True)),
-                ('billing_profile', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='billing.BillingProfile')),
+                (
+                    'billing_profile',
+                    models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='billing.BillingProfile')
+                ),
             ],
         ),
     ]
